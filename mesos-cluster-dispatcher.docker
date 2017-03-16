@@ -1,0 +1,8 @@
+FROM ubuntu:latest
+MAINTAINER USGS LCMAP http://eros.usgs.gov
+RUN apt-get update && apt-get install -y openjdk-8-jdk
+RUN mkdir /mesos
+COPY tmp/spark-2.1.0-bin-hadoop2.7/ /mesos/spark-2.1.0-bin-hadoop2.7
+WORKDIR /mesos/spark-2.1.0-bin-hadoop2.7
+EXPOSE 7077
+#ENTRYPOINT ["spark-2.1.0-bin-hadoop2.7/sbin/start-mesos-dispatcher.sh"]
