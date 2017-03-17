@@ -17,5 +17,10 @@ make push-cluster-dispatcher
 
 Configure
 ## LCMAP Spark Executor
+Build and push.
+```
+make spark-executor
+make push-spark-executor
+```
 
 Additional Documentation forthcoming.
