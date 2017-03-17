@@ -9,19 +9,26 @@ unpack-spark: download-spark
 
 spark: download-spark unpack-spark
 
-cluster-dispatcher: spark
+build-cluster-dispatcher: spark
 	docker build -t usgseros/mesos-cluster-dispatcher -f mesos-cluster-dispatcher.docker --rm=true --compress .
 	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:latest
 	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:2.1
 
-spark-executor:
-
-push-cluster-dispatcher: cluster-dispatcher
+push-cluster-dispatcher: 
 	docker login; docker push usgseros/mesos-cluster-dispatcher
  
-push-spark-executor: spark-executor
+cluster-dispatcher: build-cluster-dispatcher push-cluster-dispatcher
+
+build-spark-executor: spark
+	docker build -t usgseros/lcmap-spark-executor -f lcmap-spark-executor.docker --rm=true --compress .
+	docker tag usgseros/lcmap-spark-executor usgseros/lcmap-spark-executor:latest
+	docker tag usgseros/lcmap-spark-executor usgseros/lcmap-spark-executor:2.1
+
+push-spark-executor:
 	docker login; docker push usgseros/spark-executor
-	
+
+spark-executor: build-spark-executor push-spark-executor
+
 clean-spark:
 	@rm -rf tmp;
 
