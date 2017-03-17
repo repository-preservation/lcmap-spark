@@ -9,7 +9,11 @@
 - Images are published to Docker Hub under the usgseros organization.
 
 ## Mesos Cluster Dispatcher
+Build and push.
+```make cluster-dispatcher
+   make push-cluster-dispatcher```
 
+Configure
 ## LCMAP Spark Executor
 
 Additional Documentation forthcoming.
