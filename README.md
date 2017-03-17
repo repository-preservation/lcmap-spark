@@ -4,6 +4,6 @@
 - Creates and publishes a Dockerfile to host the Mesos Cluster Dispatcher
 
 ## Releases
-Release branches are maintained for each version of the Dockerfiles that are published while master is always the latest.  Docker images are published to Docker Hub under the usgseros organization.
+Release branches are maintained for each version of the Dockerfiles that are published while master is always the latest.  Images are published to Docker Hub under the usgseros organization.
 
 Additional Documentation forthcoming.
