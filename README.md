@@ -13,6 +13,9 @@ Build and push.
 ```
 make build-cluster-dispatcher
 make push-cluster-dispatcher
+
+# builds and pushes
+make cluster-dispatcher
 ```
 
 Configure
@@ -21,6 +24,9 @@ Build and push.
 ```
 make build-spark-executor
 make push-spark-executor
+
+# builds and pushes
+make spark-executor
 ```
 
 Additional Documentation forthcoming.
