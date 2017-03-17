@@ -10,8 +10,10 @@
 
 ## Mesos Cluster Dispatcher
 Build and push.
-```make cluster-dispatcher
-   make push-cluster-dispatcher```
+```
+make cluster-dispatcher
+make push-cluster-dispatcher
+```
 
 Configure
 ## LCMAP Spark Executor
