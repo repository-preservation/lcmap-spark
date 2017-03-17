@@ -11,7 +11,7 @@
 ## Mesos Cluster Dispatcher
 Build and push.
 ```
-make cluster-dispatcher
+make build-cluster-dispatcher
 make push-cluster-dispatcher
 ```
 
@@ -19,7 +19,7 @@ Configure
 ## LCMAP Spark Executor
 Build and push.
 ```
-make spark-executor
+make build-spark-executor
 make push-spark-executor
 ```
 
