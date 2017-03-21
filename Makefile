@@ -11,7 +11,7 @@ init: download-spark unpack-spark
 build:
 	docker build -t usgseros/mesos-cluster-dispatcher --rm=true --compress .
 	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:latest
-	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:2.1
+	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:1.1.1-2.1.0
 
 push:
 	docker login; docker push usgseros/mesos-cluster-dispatcher
