@@ -29,8 +29,8 @@ Environment variables are used to configure the Mesos Cluster Dispatcher image.
 
 ## Running
 ```
-$ docker run -e MESOS_MASTER=mesos://127.0.0.1:5050 \
-             -e ZOOKEEPER=127.0.0.1:2181 \
+$ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
+             -e ZOOKEEPER=zookeeper:2181 \
              -e FRAMEWORK_NAME=TestSparkCluster \
              --network lcmapservices_lcmap \
              -it usgseros/mesos-cluster-dispatcher
