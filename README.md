@@ -20,8 +20,9 @@ make all
 
 ## Configuration
 Environment variables are used to configure the Mesos Cluster Dispatcher image.
+
 | Variable        | Example Value  |
-| ------------- |:-------------:|
+| ------------- | ------------- |
 | MESOS_MASTER   | mesos://localhost:5050 |
 | ZOOKEEPER      | 127.0.0.1:2181 |
 | FRAMEWORK_NAME | TestSparkCluster |
