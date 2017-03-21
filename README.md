@@ -1,4 +1,4 @@
-# lcmap-spark
+# lcmap-mesos-spark-cluster-dispatcher
 Creates and publishes a Docker image to host the Mesos Cluster Dispatcher.
 
 
@@ -40,14 +40,12 @@ $ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
 ## Developing and Releasing
 Releases for Mesos Cluster Dispatcher are handled via release branches.  
 
-For each new version of the image to be released, a new release branch should
-be created and the Dockerfile & Makefile, etc should be updated with the desired
-changes.  Any additional bug fixes should be committed against the appropriate
-release branch.  
+A release branch should be created for each new version.  Changes and updates
+should be committed directly to the release branches.
 
-Release branch versions corresponds to the Mesos version and Spark version
-which are included.
+Release branch versions correspond to the Mesos and Spark version which are
+in the image.
 
 Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos Cluster Dispatcher
-release branch is named releases/1.1.1-2.1.0, and the Docker image is tagged
-as such.
+release branch is named ```releases/1.1.1-2.1.0```, and the Docker image is
+tagged ```1.1.1-2.1.0```.
