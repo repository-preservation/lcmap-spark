@@ -1,5 +1,5 @@
-# lcmap-mesos-spark-cluster-dispatcher
-Creates and publishes a Docker image to host the Mesos Cluster Dispatcher.
+# lcmap-mesos-spark
+Creates and publishes a Docker image for running Spark standalone or Spark on Mesos.
 
 
 ## Building
@@ -38,7 +38,7 @@ $ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
 ```
 
 ## Developing and Releasing
-Releases for Mesos Cluster Dispatcher are handled via release branches.  
+Releases for LCMAP Mesos Spark are handled via release branches.  
 
 A release branch should be created for each new version.  Changes and updates
 should be committed directly to the release branches.

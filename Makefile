@@ -9,11 +9,11 @@ unpack-spark: download-spark
 init: download-spark unpack-spark
 
 build:
-	docker build -t usgseros/mesos-cluster-dispatcher --rm=true --compress .
-	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:latest
-	docker tag usgseros/mesos-cluster-dispatcher usgseros/mesos-cluster-dispatcher:1.1.1-2.1.0
+	docker build -t usgseros/mesos-spark --rm=true --compress .
+	docker tag usgseros/mesos-spark usgseros/mesos-spark:latest
+	docker tag usgseros/mesos-spark usgseros/mesos-spark:1.1.1-2.1.0
 
 push:
-	docker login; docker push usgseros/mesos-cluster-dispatcher
+	docker login; docker push usgseros/mesos-spark
 
 all: init build push
