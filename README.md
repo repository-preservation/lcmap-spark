@@ -17,8 +17,25 @@ make push
 make all
 ```
 
+## Developing and Releasing
+Releases for LCMAP Mesos Spark are handled via release branches.  
 
-## Configuration
+A release branch should be created for each new version.  Changes and updates
+should be committed directly to the release branches.
+
+Release branch versions correspond to the Mesos and Spark version which are
+in the image.
+
+Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos Cluster Dispatcher
+release branch is named ```releases/1.1.1-2.1.0```, and the Docker image is
+tagged ```1.1.1-2.1.0```.
+
+
+## Configuring and Running the Mesos Cluster Dispatcher
+
+Entrypoint to be used:
+```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
+
 Environment variables are used to configure the Mesos Cluster Dispatcher image.
 
 | Variable        | Example Value  |
@@ -33,19 +50,7 @@ Environment variables are used to configure the Mesos Cluster Dispatcher image.
 $ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
              -e ZOOKEEPER=zookeeper:2181 \
              -e FRAMEWORK_NAME=TestSparkCluster \
+             --entrypoint sbin/dispatcher-entry-point.sh \
              --network lcmapservices_lcmap \
              -it usgseros/mesos-cluster-dispatcher
 ```
-
-## Developing and Releasing
-Releases for LCMAP Mesos Spark are handled via release branches.  
-
-A release branch should be created for each new version.  Changes and updates
-should be committed directly to the release branches.
-
-Release branch versions correspond to the Mesos and Spark version which are
-in the image.
-
-Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos Cluster Dispatcher
-release branch is named ```releases/1.1.1-2.1.0```, and the Docker image is
-tagged ```1.1.1-2.1.0```.
