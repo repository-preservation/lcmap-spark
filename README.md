@@ -40,8 +40,8 @@ Environment variables are used to configure the MesosClusterDispatcher image.
 
 | Variable        | Example Value  |
 | ------------- | ------------- |
-| MESOS_MASTER   | mesos://127.0.0.1:5050 |
-| ZOOKEEPER      | 127.0.0.1:2181 |
+| MESOS_MASTER   | mesos://mesos-master-host:5050 |
+| ZOOKEEPER      | zookeeper-host:2181 |
 | FRAMEWORK_NAME | TestSparkCluster |
 
 
