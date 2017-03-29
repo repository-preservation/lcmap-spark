@@ -26,12 +26,12 @@ should be committed directly to the release branches.
 Release branch versions correspond to the Mesos and Spark version which are
 in the image.
 
-Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos Cluster Dispatcher
+Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos-Spark
 release branch is named ```releases/1.1.1-2.1.0```, and the Docker image is
 tagged ```1.1.1-2.1.0```.
 
 
-## Configuring and Running the Mesos Cluster Dispatcher
+## Configuring and Running the MesosClusterDispatcher
 
 Entrypoint to be used:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
