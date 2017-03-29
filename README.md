@@ -36,11 +36,11 @@ tagged ```1.1.1-2.1.0```.
 Entrypoint to be used:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
 
-Environment variables are used to configure the Mesos Cluster Dispatcher image.
+Environment variables are used to configure the MesosClusterDispatcher image.
 
 | Variable        | Example Value  |
 | ------------- | ------------- |
-| MESOS_MASTER   | mesos://localhost:5050 |
+| MESOS_MASTER   | mesos://127.0.0.1:5050 |
 | ZOOKEEPER      | 127.0.0.1:2181 |
 | FRAMEWORK_NAME | TestSparkCluster |
 
