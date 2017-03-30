@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build
 
 download-spark:
-	wget -P tmp http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
+	mkdir tmp; wget -O tmp/spark-2.1.0-bin-hadoop2.7.tgz http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
 
 unpack-spark: download-spark
 	cd tmp; gunzip *gz; tar -xvf *tar;
