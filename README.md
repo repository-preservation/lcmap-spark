@@ -30,7 +30,7 @@ The MesosClusterDispatcher is a Spark component that is used to run Spark on Mes
 
 An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.
 
-Example entrypoint:
+Example:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
 
 Environment variables are used to configure the MesosClusterDispatcher image. These are all required.
