@@ -43,7 +43,6 @@ An entrypoint script has been created and is available at ```/opt/spark/dist/sbi
 Example:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
 
-## Running
 ```
 $ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
              -e ZOOKEEPER=zookeeper:2181 \
