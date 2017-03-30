@@ -35,7 +35,7 @@ The Mesos-Spark image can run the MesosClusterDispatcher as all required depende
 Please see http://spark.apache.org/docs/latest/running-on-mesos.html for more information.
 
 ### Configuring
-Environment variables are used to configure the MesosClusterDispatcher image. These are all required.
+Environment variables are used to configure the MesosClusterDispatcher. These are all required.
 
 | Variable        | Example Value  |
 | ------------- | ------------- |
@@ -44,7 +44,7 @@ Environment variables are used to configure the MesosClusterDispatcher image. Th
 | FRAMEWORK_NAME | TestSparkCluster |
 
 ### Running
-An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.
+An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.  All logging output is available at stdout.
 
 Example:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
