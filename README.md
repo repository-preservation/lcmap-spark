@@ -44,7 +44,11 @@ Environment variables are used to configure the MesosClusterDispatcher. These ar
 | FRAMEWORK_NAME | TestSparkCluster |
 
 ### Running
-An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.  All logging output is available at stdout.
+An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  
+
+The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.  
+
+All logging output is available at stdout.
 
 Example:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
