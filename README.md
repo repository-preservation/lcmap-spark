@@ -49,5 +49,5 @@ $ docker run -e MESOS_MASTER=mesos://mesos-master:5050 \
              -e FRAMEWORK_NAME=TestSparkCluster \
              --entrypoint sbin/dispatcher-entry-point.sh \
              --network lcmapservices_lcmap \
-             -it usgseros/mesos-cluster-dispatcher
+             -it usgseros/mesos-spark
 ```
