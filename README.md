@@ -20,30 +20,26 @@ make all
 ## Developing and Releasing
 Releases for LCMAP Mesos Spark are handled via release branches.  
 
-A release branch should be created for each new version.  Changes and updates
-should be committed directly to the release branches.
+A release branch should be created for each new Mesos and Spark combination.  Changes and updates should be committed directly to these release branches. Docker images should be rebuilt and pushed from them as well.
 
-Release branch versions correspond to the Mesos and Spark version which are
-in the image.
-
-Example, for Mesos 1.1.1 and Spark 2.1.0, the Mesos-Spark
-release branch is named ```releases/1.1.1-2.1.0```, and the Docker image is
-tagged ```1.1.1-2.1.0```.
-
+Versioning example: for Mesos 1.1.1 and Spark 2.1.0, the Mesos-Spark
+release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image should be tagged ```1.1.1-2.1.0```.
 
 ## Configuring and Running the MesosClusterDispatcher
+The MesosClusterDispatcher is a Spark component that is used to run Spark on Mesos in cluster mode.  It listens on port 7077 and 8081 and serves as the master when running ```spark-submit```.  Please see http://spark.apache.org/docs/latest/running-on-mesos.html for more information.
 
-Entrypoint to be used:
+An entrypoint script has been created and is available at ```/opt/spark/dist/sbin/dispatcher-entry-point.sh```.  The work directory for this image is set to ```/opt/spark/dist``` so an entrypoint need only reference ```sbin/dispatcher-entry-point.sh```.
+
+Example entrypoint:
 ```ENTRYPOINT ["sbin/dispatcher-entry-point.sh"]```
 
-Environment variables are used to configure the MesosClusterDispatcher image.
+Environment variables are used to configure the MesosClusterDispatcher image. These are all required.
 
 | Variable        | Example Value  |
 | ------------- | ------------- |
 | MESOS_MASTER   | mesos://mesos-master-host:5050 |
 | ZOOKEEPER      | zookeeper-host:2181 |
 | FRAMEWORK_NAME | TestSparkCluster |
-
 
 ## Running
 ```
