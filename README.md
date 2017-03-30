@@ -26,7 +26,13 @@ Versioning example: for Mesos 1.1.1 and Spark 2.1.0, the Mesos-Spark
 release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image should be tagged ```1.1.1-2.1.0```.
 
 ## MesosClusterDispatcher
-The MesosClusterDispatcher is a Spark component that is used to run Spark on Mesos in cluster mode.  It listens on port 7077 and 8081 and serves as the master when running ```spark-submit```.  Please see http://spark.apache.org/docs/latest/running-on-mesos.html for more information.
+The MesosClusterDispatcher is a Spark component that is used to run Spark on Mesos in cluster mode.  
+
+It listens on port 7077 and 8081 and serves as the master when running ```spark-submit```.  
+
+The Mesos-Spark image can run the MesosClusterDispatcher as all required dependencies are included in the image.
+
+Please see http://spark.apache.org/docs/latest/running-on-mesos.html for more information.
 
 ### Configuring
 Environment variables are used to configure the MesosClusterDispatcher image. These are all required.
