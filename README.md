@@ -1,4 +1,4 @@
-# lcmap-mesos-spark
+# lcmap-spark
 Creates and publishes a Docker image for running Spark standalone or Spark on Mesos.
 
 
@@ -18,7 +18,7 @@ make all
 ```
 
 ## Developing and Releasing
-Releases for LCMAP Mesos Spark are handled via release branches.  
+Releases for LCMAP Spark are handled via release branches.  
 
 A release branch should be created for each new Mesos and Spark combination.  Changes and updates should be committed directly to these release branches. Docker images should be rebuilt and pushed from them as well.
 
