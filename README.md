@@ -38,6 +38,7 @@ release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image 
 * does Clojure belong in this image or a derivative
 
 ## Certs for Mesos Authentication [WIP]
+* WARNING: Do not copy keys into a derivative Docker image, as this is a security violation.  Add the keys at runtime only
 * must be located on host machine and mounted as filesystem into image
 */certs/mesos.crt
 */certs/mesos.key
