@@ -31,6 +31,20 @@ ENV HOME=/home/lcmap \
 ENV PATH=$SPARK_HOME/bin:${PATH}:$HOME/miniconda3/bin \
     PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
+ENV TINI_SUBREAPER=true \
+    LIBPROCESS_SSL_ENABLED=1 \
+    LIBPROCESS_SSL_SUPPORT_DOWNGRADE=1 \
+    LIBPROCESS_SSL_VERIFY_CERT=0 \
+    LIBPROCESS_SSL_ENABLE_SSL_V3=0 \
+    LIBPROCESS_SSL_ENABLE_TLS_V1_0=0 \
+    LIBPROCESS_SSL_ENABLE_TLS_V1_1=0 \
+    LIBPROCESS_SSL_ENABLE_TLS_V1_2=1 \
+    LIBPROCESS_SSL_CERT_FILE=/certs/mesos.crt \
+    LIBPROCESS_SSL_KEY_FILE=/certs/mesos.key \
+    LIBPROCESS_SSL_CA_FILE=/certs/TrustedRoot.crt \
+    LIBPROCESS_SSL_CA_DIR=/certs \
+    LIBPROCESS_SSL_ECDH_CURVE=auto
+
 ##########################################################################
 # Add a user to run as inside the container.
 #

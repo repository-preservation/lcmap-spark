@@ -36,3 +36,9 @@ release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image 
 ## Open questions [WIP]
 * does Python and Miniconda belong in this image or a derivative
 * does Clojure belong in this image or a derivative
+
+## Certs for Mesos Authentication [WIP]
+* must be located on host machine and mounted as filesystem into image
+*/certs/mesos.crt
+*/certs/mesos.key
+*/certs/TrustedRoot.crt
