@@ -26,12 +26,8 @@ ENV HOME=/home/lcmap \
     PYSPARK_PYTHON=python3 \
     MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so \    
     LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8
-
-ENV PATH=$SPARK_HOME/bin:${PATH}:$HOME/miniconda3/bin \
-    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
-
-ENV TINI_SUBREAPER=true \
+    LANG=en_US.UTF-8 \
+    TINI_SUBREAPER=true \
     LIBPROCESS_SSL_ENABLED=1 \
     LIBPROCESS_SSL_SUPPORT_DOWNGRADE=1 \
     LIBPROCESS_SSL_VERIFY_CERT=0 \
@@ -44,6 +40,10 @@ ENV TINI_SUBREAPER=true \
     LIBPROCESS_SSL_CA_FILE=/certs/TrustedRoot.crt \
     LIBPROCESS_SSL_CA_DIR=/certs \
     LIBPROCESS_SSL_ECDH_CURVE=auto
+
+ENV PATH=$SPARK_HOME/bin:${PATH}:$HOME/miniconda3/bin \
+    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
+
 
 ##########################################################################
 # Add a user to run as inside the container.
