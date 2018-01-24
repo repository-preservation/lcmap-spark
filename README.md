@@ -39,6 +39,9 @@ release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image 
 
 ## Certs for Mesos Authentication [WIP]
 * must be located on host machine and mounted as filesystem into image
+
 */certs/mesos.crt
+
 */certs/mesos.key
+
 */certs/TrustedRoot.crt
