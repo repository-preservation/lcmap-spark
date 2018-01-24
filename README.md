@@ -23,4 +23,16 @@ release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image 
 * jdk 1.8
 * python 3.6
 * mesos 1.4
-* spark-cassandra connector 3
+* spark-cassandra connector 
+
+## Notebooks
+* Use example notebooks
+* Install custom notebooks
+
+## Example Notebooks
+* get spark context & perform simple operation
+* python, java, clojure
+
+## Open questions
+* does Python and Miniconda belong in this image or a derivative
+* does Clojure belong in this image or a derivative
