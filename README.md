@@ -10,8 +10,7 @@ LCMAP SEE Spark base image.
 ## Running
 
 ```
-# Run the Jupyter Notebook server then follow the instructions in the console
-
+# Run the Jupyter Notebook server
 docker run -it \
            --rm \
            --user=`id -u` \
@@ -23,7 +22,6 @@ docker run -it \
 
 
 # Run the PySpark shell
-
 docker run -it \
            --rm \
            --user=`id -u` \
@@ -34,7 +32,6 @@ docker run -it \
 
 
 # Run spark-submit
-
 docker run -it \
            --rm \
            --user=`id -u` \
