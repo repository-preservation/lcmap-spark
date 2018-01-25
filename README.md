@@ -19,13 +19,12 @@ make push
 Running the LCMAP SEE Notebook server is a piece of cake.  Just run this command with these three thousand flags:
 
 ```
-$ docker run --user `id -u` \
-             --publish-all \
-             --network host \
-             --pid host \
-             -v /path/to/your/notebooks:/home/lcmap/notebook/yours \
+
+$ docker run -it --rm --user=`id -u` --network=host --pid=host \
+             --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
              usgseros/lcmap-spark:latest \
-             jupyter --ip=$HOSTNAME notebook --allow-root
+             jupyter --ip=$HOSTNAME notebook
+
 ```
 
 ## Notebooks [WIP]
