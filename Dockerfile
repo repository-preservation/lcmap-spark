@@ -90,3 +90,6 @@ RUN sudo yum install -y maven  && \
     sudo rm -rf /var/cache/yum && \
     sudo rm -rf /root/.cache /root/.m2
 
+COPY examples $HOME/notebook/examples
+RUN sudo chown -R lcmap:lcmap .
+
