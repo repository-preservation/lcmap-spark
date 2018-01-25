@@ -15,6 +15,10 @@ make
 # Push the image to Dockerhub
 make push
 ```
+## Running
+Running the LCMAP SEE Notebook server is a piece of cake.  Just run this command with these three thousand flags:
+
+```docker run -u `id -u` --publish-all --network=host --pid=host -v /path/to/your/notebooks:/home/lcmap/notebook/yours usgseros/lcmap-spark:latest jupyter --ip=$HOSTNAME notebook --allow-root```
 
 ## Notebooks [WIP]
 * Use example notebooks
