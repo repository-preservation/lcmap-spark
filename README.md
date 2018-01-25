@@ -7,18 +7,10 @@ LCMAP SEE Spark base image.
 * Connect to Apache Cassandra with the Spark-Cassandra Connector and DataFrames
 * Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
-## Building
-```
-# Build the image
-make
-
-# Push the image to Dockerhub
-make push
-```
 ## Running
 
 ```
-# Run the Jupyter Notebook server.
+# Run the Jupyter Notebook server then follow the instructions in the console.
 docker run -it \
            --rm \
            --user=`id -u` \
@@ -27,6 +19,15 @@ docker run -it \
            --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
            usgseros/lcmap-spark:latest \
            jupyter --ip=$HOSTNAME notebook
+```
+
+## Building
+```
+# Build the image
+make
+
+# Push the image to Dockerhub
+make push
 ```
 
 ## Notebooks [WIP]
