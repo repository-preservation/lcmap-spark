@@ -10,7 +10,8 @@ LCMAP SEE Spark base image.
 ## Running
 
 ```
-# Run the Jupyter Notebook server then follow the instructions in the console.
+# Run the Jupyter Notebook server then follow the instructions in the console
+
 docker run -it \
            --rm \
            --user=`id -u` \
