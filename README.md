@@ -18,6 +18,7 @@ make push
 ## Running
 
 ```
+# Run the Jupyter Notebook server.
 docker run -it \
            --rm \
            --user=`id -u` \
