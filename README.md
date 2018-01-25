@@ -1,6 +1,11 @@
 # lcmap-spark
-Creates and publishes a Docker image for running Spark standalone or Spark on Mesos.
+LCMAP SEE Spark base image.
 
+## Features
+* Run Spark locally or on Mesos
+* Interactive development and analysis via Jupyter Notebooks
+* Connect to Apache Cassandra with the Spark-Cassandra Connector and DataFrames
+* Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
 ## Building
 ```
@@ -10,20 +15,6 @@ make
 # Push the image to Dockerhub
 make push
 ```
-
-## Developing [WIP]
-Releases for LCMAP Spark are handled via release branches.  
-
-A release branch should be created for each new Mesos and Spark combination.  Changes and updates should be committed directly to these release branches. Docker images should be rebuilt and pushed from them as well.
-
-Versioning example: for Mesos 1.1.1 and Spark 2.1.0, the Mesos-Spark
-release branch should be named ```releases/1.1.1-2.1.0```, and the Docker image should be tagged ```1.1.1-2.1.0```.
-
-## Compatibility [WIP]
-* jdk 1.8
-* python 3.6
-* mesos 1.4
-* spark-cassandra connector 
 
 ## Notebooks [WIP]
 * Use example notebooks
