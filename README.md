@@ -18,7 +18,6 @@ make push
 ## Running
 
 ```
-
 docker run -it \
            --rm \
            --user=`id -u` \
