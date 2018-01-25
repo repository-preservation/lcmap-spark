@@ -20,6 +20,28 @@ docker run -it \
            --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
            usgseros/lcmap-spark:latest \
            jupyter --ip=$HOSTNAME notebook
+
+
+# Run the PySpark shell
+
+docker run -it \
+           --rm \
+           --user=`id -u` \
+           --network=host \
+           --pid=host \
+           usgseros/lcmap-spark:latest \
+           pyspark
+
+
+# Run spark-submit
+
+docker run -it \
+           --rm \
+           --user=`id -u` \
+           --network=host \
+           --pid=host \
+           usgseros/lcmap-spark:latest \
+           spark-submit
 ```
 
 ## Building
