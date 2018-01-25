@@ -17,7 +17,7 @@ docker run -it \
            --user=`id -u` \
            --network=host \
            --pid=host \
-           --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
+           --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
            usgseros/lcmap-spark:latest \
            jupyter --ip=$HOSTNAME notebook
 ```
