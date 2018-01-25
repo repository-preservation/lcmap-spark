@@ -16,19 +16,17 @@ make
 make push
 ```
 ## Running
-Running the LCMAP SEE Notebook server is a piece of cake.  Just run this command with these three thousand flags:
 
 ```
 
-$ docker run -it \
-             --rm \
-             --user=`id -u` \
-             --network=host \
-             --pid=host \
-             --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
-             usgseros/lcmap-spark:latest \
-             jupyter --ip=$HOSTNAME notebook
-
+docker run -it \
+           --rm \
+           --user=`id -u` \
+           --network=host \
+           --pid=host \
+           --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
+           usgseros/lcmap-spark:latest \
+           jupyter --ip=$HOSTNAME notebook
 ```
 
 ## Notebooks [WIP]
