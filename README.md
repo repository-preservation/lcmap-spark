@@ -20,7 +20,11 @@ Running the LCMAP SEE Notebook server is a piece of cake.  Just run this command
 
 ```
 
-$ docker run -it --rm --user=`id -u` --network=host --pid=host \
+$ docker run -it \
+             --rm \
+             --user=`id -u` \
+             --network=host \
+             --pid=host \
              --volume /path/to/your/notebooks/:/home/lcmap/notebook/yours \
              usgseros/lcmap-spark:latest \
              jupyter --ip=$HOSTNAME notebook
