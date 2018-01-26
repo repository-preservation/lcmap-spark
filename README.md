@@ -72,6 +72,6 @@ Mesos admins.
 Mount a volume at runtime as including them in a published image constitutes a security violation.
 
 #### Example
-Assume the files are present in ```/home/user/certs``` on the host machine.
+Assume the files exist at ```/home/user/certs``` on the host machine.
 
 ``` docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>```
