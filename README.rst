@@ -76,7 +76,8 @@ Mesos admins.
 
 Mount a volume at runtime as including them in a published image constitutes a security violation.
 
-Example
+**Example**
+
 Assume the files exist at ``/home/user/certs`` on the host machine.
 
 .. code-block:: bash
