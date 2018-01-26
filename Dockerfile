@@ -37,32 +37,21 @@ ENV HOME=/home/lcmap \
     LIBPROCESS_SSL_ENABLE_TLS_V1_2=1 \
     LIBPROCESS_SSL_CERT_FILE=/certs/mesos.crt \
     LIBPROCESS_SSL_KEY_FILE=/certs/mesos.key \
-    LIBPROCESS_SSL_CA_FILE=/certs/TrustedRoot.crt \
+    LIBPROCESS_SSL_CA_FILE=/certs/trustedroot.crt \
     LIBPROCESS_SSL_CA_DIR=/certs \
     LIBPROCESS_SSL_ECDH_CURVE=auto
 
 ENV PATH=$SPARK_HOME/bin:${PATH}:$HOME/miniconda3/bin \
     PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
-
-##########################################################################
-# Add a user to run as inside the container.
-#
-# This will prevent accidental foo while mounting volumes.
-#
-# To enable access between external and internal users on mounted volume
-# files, set 'other' perms appropriately. e.g. chmod xx6
-#
-# Mesos user must match this user (and be assigned permissions by Mesos admin.)
-#
-##########################################################################
+# Add a user to run as inside the container to prevent accidental foo while mounting volumes.
+# Use "docker run -u `id -u`" at runtime to assign proper UIDs for file permissions.
+# Mesos username must match this username (and be assigned permissions by Mesos admin.)
 RUN adduser -ms /bin/bash lcmap && \
     echo "lcmap ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/lcmap && \
     chmod 0440 /etc/sudoers.d/lcmap
-
 USER $USER
 WORKDIR $HOME
-##########################################################################
 
 # Install Spark
 RUN cd /opt && \
@@ -89,6 +78,7 @@ RUN sudo yum install -y maven  && \
     sudo yum clean all && \
     sudo rm -rf /var/cache/yum && \
     sudo rm -rf /root/.cache /root/.m2
+    sudo rm pom.xml
 
 COPY examples $HOME/notebook/examples
 RUN sudo chown -R lcmap:lcmap .

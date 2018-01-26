@@ -62,9 +62,17 @@ make push
 * does Python and Miniconda belong in this image or a derivative
 * does Clojure belong in this image or a derivative
 
-## Certs for Mesos Authentication [WIP]
-* WARNING: Do not copy keys into a derivative Docker image, as this is a security violation.  Add the keys at runtime only
-* must be located on host machine and mounted as filesystem into image
-* /certs/mesos.crt
-* /certs/mesos.key
-* /certs/TrustedRoot.crt
+## Certs for Mesos Authentication
+The following three files must be present in the image /certs directory.  They can be obtained from
+Mesos admins.
+* mesos.crt
+* mesos.key
+* trustedroot.crt
+
+The files should be mounted as a volume at runtime since including them into a published image
+would constitute a security violation.
+
+Example:
+Assume the files are present in ```/home/user/certs``` on the host machine.
+
+``` docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>```
