@@ -1,4 +1,5 @@
-# lcmap-spark
+lcmap-spark
+===========
 LCMAP SEE Spark base image.
 
 Features
@@ -77,7 +78,9 @@ Mount a volume at runtime as including them in a published image constitutes a s
 Example
 Assume the files exist at ``/home/user/certs`` on the host machine.
 
-``docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>``
+.. code-block:: bash
+
+    docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>
 
 Versioning
 ----------
