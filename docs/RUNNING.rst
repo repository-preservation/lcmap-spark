@@ -1,15 +1,15 @@
 ====================
 Running lcmap-spark 
 ====================
-``lcmap-spark`` is an application of Apache Spark targeting the needs of the LCMAP SEE.  As such, ``lcmap-spark`` supports a subset of the deployment and runtime configurations offered by Spark.
+lcmap-spark is an application of Apache Spark targeting the needs of the LCMAP SEE.  This guide will show you how to run lcmap-spark locally and on Apache Mesos.  Running on a standalone Spark cluster or on Yarn have not been tested.
 
-Apache Spark offers several runtime environments: (1) Local (2) Spark cluster (3) Yarn (4) Mesos.
+Dependencies
+------------
+Code and system dependencies are packaged into a Docker image.  This image is used on the local client to either create and run an in-memory Spark instance locally or connect to a Mesos master over the network.
 
-``lcmap-spark`` supports (1) Local and (4) Mesos only.
+When connecting to Mesos the same Docker image run locally is automatically downloaded onto the Mesos nodes and used as the execution environment for application code.  This provides a consistent and reliable way to develop, deploy and run Spark applications and all their necessary dependencies.
 
-When running on Mesos, Spark also provides two modes: (1) Client Mode (2) Cluster Mode.
-
-``lcmap-spark`` targets (1) Client Mode using the Docker containerizer.
+lcmap-spark provides a minimal set of dependencies useful for exploratory analysis and development.  Each application should create and publish their own Docker image, specifying lcmap-spark as the base image with ``FROM lcmap-spark:<version>``.
 
 Local
 -----
@@ -18,6 +18,10 @@ Local runtime configuration and instructions.
 Mesos
 -----
 The official Spark on Mesos documentation is `here <https://spark.apache.org/docs/latest/running-on-mesos.html>`_
+
+When running on Mesos, Spark also provides two modes: (1) Client Mode (2) Cluster Mode.
+
+``lcmap-spark`` targets (1) Client Mode using the Docker containerizer.
 
 Mesos based runtime configuration and instructions.
 
