@@ -43,15 +43,16 @@ Running
                usgseros/lcmap-spark:latest \
                spark-submit
 
+Building
+--------
 
-## Building
-```
-# Build the image
-make
+.. code-block:: bash
+                
+    # Build the image
+    make
 
-# Push the image to Dockerhub
-make push
-```
+    # Push the image to Dockerhub
+    make push
 
 Notebooks [WIP]
 ---------------
