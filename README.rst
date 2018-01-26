@@ -56,16 +56,7 @@ Building
     # Push the image to Dockerhub
     make push
 
-Notebooks [WIP]
----------------
-* Use example notebooks
-* Install custom notebooks
-
-Example Notebooks [WIP]
------------------------
-* get spark context & perform simple operation
-* python, java, clojure
-
+    
 Mesos
 -----
 
@@ -84,6 +75,13 @@ Mount a volume at runtime as including them in a published image constitutes a s
 
     docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>
 
+Example
+~~~~~~~
+
+.. code-block:: bash
+
+    <insert example>
+    
 Versioning
 ----------
 lcmap-spark follows semantic versioning: http://semver.org/
