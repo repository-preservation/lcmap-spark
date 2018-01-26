@@ -1,5 +1,6 @@
+============
 lcmap-spark
-===========
+============
 LCMAP SEE Spark base image.
 
 Features
@@ -65,8 +66,11 @@ Example Notebooks [WIP]
 * get spark context & perform simple operation
 * python, java, clojure
 
-SSL Certificates for Mesos Authentication
------------------------------------------
+Mesos
+-----
+
+SSL Certificates for Authentication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The following three files must be present in the image ``/certs`` directory.  They can be obtained from
 Mesos admins.
 
