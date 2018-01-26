@@ -58,10 +58,6 @@ make push
 * get spark context & perform simple operation
 * python, java, clojure
 
-## Open questions [WIP]
-* does Python and Miniconda belong in this image or a derivative
-* does Clojure belong in this image or a derivative
-
 ## Certs for Mesos Authentication
 The following three files must be present in the image /certs directory.  They can be obtained from
 Mesos admins.
