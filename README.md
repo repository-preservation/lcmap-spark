@@ -69,8 +69,7 @@ Mesos admins.
 * mesos.key
 * trustedroot.crt
 
-The files should be mounted as a volume at runtime since including them into a published image
-would constitute a security violation.
+Mount a volume at runtime as including them in a published image constitutes a security violation.
 
 Example:
 Assume the files are present in ```/home/user/certs``` on the host machine.
