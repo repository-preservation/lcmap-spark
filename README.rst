@@ -13,6 +13,8 @@ Features
 Running
 -------
 
+`Read the full documentation for running lcmap-spark. <docs/RUNNING.rst/>`_
+
 .. code-block:: bash
 
     # Run the Jupyter Notebook server
@@ -45,6 +47,7 @@ Running
                usgseros/lcmap-spark:latest \
                spark-submit
 
+               
 Building
 --------
 
