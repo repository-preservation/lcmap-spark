@@ -2,9 +2,9 @@
 LCMAP SEE Spark base image.
 
 ## Features
-* Run Spark locally or on Mesos
-* Interactive development and analysis via Jupyter Notebooks
-* Connect to Apache Cassandra with the Spark-Cassandra Connector and DataFrames
+* Run [Spark](https://spark.apache.org/docs/latest/) locally or on [Mesos](https://mesos.apache.org/)
+* Interactive development and analysis via [Jupyter Notebooks](https://jupyter.org/)
+* Connect to [Apache Cassandra](https://cassandra.apache.org/) with the [Spark-Cassandra Connector](https://github.com/datastax/spark-cassandra-connector/) and [DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html)
 * Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
 ## Running
