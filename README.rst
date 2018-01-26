@@ -69,6 +69,7 @@ SSL Certificates for Mesos Authentication
 -----------------------------------------
 The following three files must be present in the image /certs directory.  They can be obtained from
 Mesos admins.
+
 * mesos.crt
 * mesos.key
 * trustedroot.crt
