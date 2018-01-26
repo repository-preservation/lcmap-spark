@@ -58,7 +58,7 @@ make push
 * get spark context & perform simple operation
 * python, java, clojure
 
-## Certs for Mesos Authentication
+## SSL Certificates for Mesos Authentication
 The following three files must be present in the image /certs directory.  They can be obtained from
 Mesos admins.
 * mesos.crt
