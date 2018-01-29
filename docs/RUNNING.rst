@@ -25,11 +25,13 @@ There are two modes for lcmap-spark: (1) ``distributed`` and (2) ``non-distribut
   
 Executables
 -----------
-There are three executables in lcmap-spark: (1) ``spark``, (2) ``pyspark`` and (3) ``notebook``
+There are three executables in lcmap-spark: (1) ``spark-shell``, (2) ``pyspark`` and (3) ``notebook``
 
-* ``spark`` is a Scala shell
+* ``spark-shell`` is a Scala shell
 * ``pyspark`` is a Python shell
 * ``notebook`` is a Jupyter Notebook server
+
+See https://spark.apache.org/docs/latest/quick-start.html for more information on ``spark-shell`` and ``pyspark``.
 
   
 Distributed Mode
