@@ -16,10 +16,10 @@ SEE applications are independent software projects, publishing their own Docker 
 
 Modes
 -----
-There are two modes for lcmap-spark: (1) distributed and (2) non-distributed.
+There are two modes for lcmap-spark: (1) ``distributed`` and (2) ``non-distributed``.
 
-* Distributed mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
-* Non-distributed mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
+* ``distributed`` mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
+* ``non-distributed`` mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
 * Switching between modes is achieved through environment variables or parameters.
 
   
