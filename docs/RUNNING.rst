@@ -3,7 +3,9 @@ lcmap-spark  - WIP
 
 lcmap-spark is the application of Apache Spark for the LCMAP SEE.
 
-The shippable artifact for lcmap-spark is a Docker image published to https://hub.docker.com/r/usgseros/lcmap-spark/.  This Docker image contains all the code and libraries necessary to connect to LCMAP SEE as well as develop and test SEE based applications.  lcmap-spark is a base image, making it suitable for exploratory analysis or for deriving child images: Each SEE application is expected to be managed as an independent software project which publishes its own Docker image (derived from lcmap-spark) to https://hub/docker.com.  
+The shippable artifact for lcmap-spark is a Docker image published to https://hub.docker.com/r/usgseros/lcmap-spark/.  This Docker image contains all the code and libraries necessary to connect to LCMAP SEE as well as develop and test SEE based applications.
+
+lcmap-spark is a base image, making it suitable for exploratory analysis or for deriving child images: Each SEE application is expected to be managed as an independent software project which publishes its own Docker image (derived from lcmap-spark) to https://hub/docker.com.  
 
 and there are two modes lcmap-spark may operate in: (1) distributed and (2) non-distributed.
 
