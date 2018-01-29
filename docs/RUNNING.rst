@@ -1,19 +1,42 @@
-====================
-Running lcmap-spark 
-====================
-lcmap-spark is an application of Apache Spark targeting the needs of the LCMAP SEE.  This guide will show you how to run lcmap-spark locally and on Apache Mesos.  Running on a standalone Spark cluster or on Yarn have not been tested.
+==================
+lcmap-spark  - WIP
+==================
+lcmap-spark is the application of Apache Spark for the LCMAP SEE.
 
-Dependencies
-------------
-Code and system dependencies are packaged into a Docker image.  This image is used on the local client to either create and run an in-memory Spark instance locally or connect to a Mesos master over the network.
+The shippable artifact for lcmap-spark is a Docker image published to https://hub.docker.com/r/usgseros/lcmap-spark/.  This Docker image contains all the code and libraries necessary to connect to LCMAP SEE as well as develop and test SEE based applications.  lcmap-spark is a base image, making it suitable for exploratory analysis or for deriving child images: Each SEE application is expected to be managed as an independent software project which publishes its own Docker image (derived from lcmap-spark) to https://hub/docker.com.  
 
-When connecting to Mesos the same Docker image run locally is automatically downloaded onto the Mesos nodes and used as the execution environment for application code.  This provides a consistent and reliable way to develop, deploy and run Spark applications and all their necessary dependencies.
+and there are two modes lcmap-spark may operate in: (1) distributed and (2) non-distributed.
 
-lcmap-spark provides a minimal set of dependencies useful for exploratory analysis and development.  Each application should create and publish their own Docker image, specifying lcmap-spark as the base image with ``FROM lcmap-spark:<version>``.
+Distributed mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
 
-Local
------
-Local runtime configuration and instructions.
+Non-distributed mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
+
+Switching between distributed and non-distributed modes is achieved through simple environment variable changes.
+
+
+Distributed Mode
+----------------
+Distributed mode uses Apache Mesos as a resource manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
+
+In order to run a distributed instance of lcmap-spark, you must have the ability to run a Docker container locally, and you must have network access to a Mesos Master, ideally over a 10 Gigabit or greater network.  
+
+Connecting to Mesos
+Requesting Resources
+Running Spark Jobs
+Resource Allocation Lifecycle
+Releasing Resources
+
+When connecting to Mesos the same local Docker image is automatically downloaded onto the Mesos nodes (from hub.docker.com) and used as the execution environment for application code.  This provides a consistent and reliable way to develop, deploy and run Spark applications and all their necessary dependencies.
+
+Running lcmap-spark on a standalone cluster or on Yarn have not been tested.
+
+
+Non-distributed Mode
+--------------------
+The only requirement for running a non-distributed instance of lcmap-spark is the ability to start a Docker container.
+Create Spark Cluster
+Specify CPU and memory 
+
 
 Mesos
 -----
@@ -46,3 +69,43 @@ Example
 .. code-block:: bash
 
     <insert example>
+
+
+Anatomy of A Spark Job
+----------------------
+Spark Job is really a canned Spark Session
+Create Spark Cluster
+Spark Jobs
+Load partitioned input data
+Executing functions
+Lazy, immutable data
+Caching intermediate results
+Retrieving calculation results
+Storing results
+
+
+Anatomy of an Interactive Spark Session
+---------------------------------------
+spark, pyspark or Jupyter Notebook
+Create Spark Cluster
+* with ``spark`` and ``pyspark`` this is done for you, with Jupyter you must do this yourself.
+Load partitioned input data
+Execute functions
+Examine function outputs
+Optionally retrieve and store outputs
+
+
+Developing A SEE application
+============================
+
+
+Derivative Docker Image
+-----------------------
+
+``FROM lcmap-spark:<version>``
+
+
+Installing Python Dependencies
+------------------------------
+Conda is installed.
+Python 3 is installed and available as python3.

@@ -3,6 +3,7 @@ lcmap-spark
 ============
 LCMAP SEE Spark base image.
 
+
 Features
 --------
 * Run `Spark <https://spark.apache.org/docs/latest/>`_  locally or on `Mesos <https://mesos.apache.org/>`_
@@ -10,6 +11,7 @@ Features
 * Connect to `Apache Cassandra <https://cassandra.apache.org/>`_ with the `Spark-Cassandra Connector <https://github.com/datastax/spark-cassandra-connector/>`_ and `DataFrames <https://spark.apache.org/docs/latest/sql-programming-guide.html>`_
 * Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
+  
 Running
 -------
 
@@ -63,6 +65,7 @@ Building
 Versioning
 ----------
 lcmap-spark follows semantic versioning: http://semver.org/
+
 
 License
 -------
