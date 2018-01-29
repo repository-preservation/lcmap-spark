@@ -3,22 +3,23 @@ lcmap-spark  - WIP
 
 lcmap-spark is the application of Apache Spark for the LCMAP SEE.
 
-Shippable Artifact
-------------------
+Shippable Artifacts
+-------------------
 The shippable artifact for lcmap-spark is a Docker image published to https://hub.docker.com/r/usgseros/lcmap-spark/.
 
 * Contains all code and libraries necessary to connect to LCMAP SEE
-* ``lcmap-spark`` is a base image, suitable for exploratory analysis or as starting points for derivative images
-* Each SEE application is expected to be managed as an independent software project, publishing its own Docker image (derived from lcmap-spark) to https://hub/docker.com.  
+* Provides a consistent, immutable execution environment
+* Is a base image only, suitable for exploratory analysis or as starting points for derivative images
 
-and there are two modes lcmap-spark may operate in: (1) distributed and (2) non-distributed.
+SEE applications are independent software projects, publishing their own Docker images derived from lcmap-spark.
 
-Distributed mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
+Modes
+-----
+There are two modes lcmap-spark operates in: (1) distributed and (2) non-distributed.
 
-Non-distributed mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
-
-Switching between distributed and non-distributed modes is achieved through simple environment variable changes.
-
+* Distributed mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
+* Non-distributed mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
+* Switching between modes is achieved through environment variable changes.
 
 Distributed Mode
 ----------------
