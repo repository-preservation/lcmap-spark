@@ -13,14 +13,25 @@ The shippable artifact for lcmap-spark is a Docker image published to https://hu
 
 SEE applications are independent software projects, publishing their own Docker images derived from lcmap-spark.
 
+
 Modes
 -----
-There are two modes lcmap-spark operates in: (1) distributed and (2) non-distributed.
+There are two modes for lcmap-spark: (1) distributed and (2) non-distributed.
 
 * Distributed mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
 * Non-distributed mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
-* Switching between modes is achieved through environment variable changes.
+* Switching between modes is achieved through environment variables or parameters.
 
+  
+Executables
+-----------
+There are three executables in lcmap-spark: (1) ``spark``, (2) ``pyspark`` and (3) ``notebook``
+
+* ``spark`` is a Scala shell
+* ``pyspark`` is a Python shell
+* ``notebook`` is a Jupyter Notebook server
+
+  
 Distributed Mode
 ----------------
 Distributed mode uses Apache Mesos as a resource manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
