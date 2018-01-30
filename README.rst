@@ -11,26 +11,11 @@ Features
 * Connect to `Apache Cassandra <https://cassandra.apache.org/>`_ with the `Spark-Cassandra Connector <https://github.com/datastax/spark-cassandra-connector/>`_ and `DataFrames <https://spark.apache.org/docs/latest/sql-programming-guide.html>`_
 * Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
-  
-Running
+Example
 -------
-
-`Full documentation. <docs/RUNNING.rst/>`_
 
 .. code-block:: bash
 
-    # Run the Jupyter Notebook server
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
-               usgseros/lcmap-spark:latest \
-               jupyter --ip=$HOSTNAME notebook
-
-
-    # Run the PySpark shell
     docker run -it \
                --rm \
                --user=`id -u` \
@@ -38,16 +23,10 @@ Running
                --pid=host \
                usgseros/lcmap-spark:latest \
                pyspark
-
-
-    # Run spark-submit
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               usgseros/lcmap-spark:latest \
-               spark-submit
+               
+Documentation
+-------------
+The full documentation `is here. <docs/INDEX.rst/>`_
 
                
 Building
