@@ -5,7 +5,7 @@ A simple, portable environment for executing science models and performing explo
 
 What is Spark?
 --------------
-`From the website <https://spark.apache.org/`_, Apache Spark is a fast and general engine for large scale data processing.  It can run on a laptop or on thousands of machines, processes data too big to fit in memory, and moves functions to data rather than data to functions.
+`From the website <https://spark.apache.org/>`_, Apache Spark is a fast and general engine for large scale data processing.  It can run on a laptop or on thousands of machines, processes data too big to fit in memory, and moves functions to data rather than data to functions.
 
 Spark has connectors to many data sources, offers interactive development and is open source.
 
@@ -44,7 +44,9 @@ Anatomy of A Spark Job
    # save calculation results
    save_to_cassandra(results)
 
-Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.  The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.  The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once and thus handling datasets that are much larger than available physical memory.
+Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.  The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.
+
+The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once and thus handling datasets that are much larger than available physical memory.
 
 Shippable Artifacts
 -------------------
