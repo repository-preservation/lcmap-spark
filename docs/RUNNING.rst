@@ -85,9 +85,7 @@ There are three executables in lcmap-spark: (1) ``spark-shell``, (2) ``pyspark``
 * ``pyspark`` is a Python shell
 * ``notebook`` is a Jupyter Notebook server
 
-See https://spark.apache.org/docs/latest/quick-start.html for more information on ``spark-shell`` and ``pyspark``.
-
-See https://jupyter.org/ to learn about Jupyter Notebooks.
+See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.org for more information.
 
   
 Distributed Mode
