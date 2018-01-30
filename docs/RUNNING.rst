@@ -50,9 +50,11 @@ Anatomy of A Spark Job
    # shut down Spark cluster
    sc.close()
 
-Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.  The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.
+Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.
 
-The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once and thus handling datasets that are much larger than available physical memory.
+The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.
+
+The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once, which means datasets much larger than available physical memory may be operated on.
 
 Shippable Artifacts
 -------------------
