@@ -69,7 +69,7 @@ LCMAP SEE applications are independent software projects, publishing their own D
 
 Modes
 -----
-There are two modes for lcmap-spark: (1) ``distributed`` and (2) ``non-distributed``.
+There are two modes for lcmap-spark: ``distributed`` and ``non-distributed``.
 
 * ``distributed`` mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
 * ``non-distributed`` mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
@@ -79,7 +79,7 @@ See httpsmodes for configuring distributed and non-distributed
   
 Executables
 -----------
-There are three executables in lcmap-spark: (1) ``spark-shell``, (2) ``pyspark`` and (3) ``notebook``
+There are three executables in lcmap-spark: ``spark-shell``, ``pyspark`` and ``notebook``
 
 * ``spark-shell`` is a Scala shell
 * ``pyspark`` is a Python shell
