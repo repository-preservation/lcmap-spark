@@ -13,15 +13,15 @@ Read more about Spark: https://spark.apache.org.
 
 What is LCMAP-Spark?
 --------------------
-LCMAP-Spark is a fully configured, ready to go Docker base image for the LCMAP Science Execution Environment.
+lcmap-spark is a fully configured, ready to go Docker base image for the LCMAP Science Execution Environment.
 
 It contains Apache Spark, the Spark-Cassandra Connector and a Jupyter Notebook server to quickly allow science developers to get up and running on the LCMAP SEE.
 
 A base set of Python libraries are already installed for creating time series data out of LCMAP Information Warehouse and Datastore Analysis Ready Data.  Conda is configured and available for installing additional packages.
 
-Applications can be developed on a laptop using LCMAP-Spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.
+Applications can be developed on a laptop using lcmap-spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.
 
-LCMAP-Spark targets and is tested against Apache Mesos for distributed computing.
+lcmap-spark targets and is tested against Apache Mesos for distributed computing.
 
 Anatomy of A Spark Job
 ----------------------
