@@ -39,13 +39,13 @@ Anatomy of A Spark Job
    sc = pyspark.SparkContext()
 
    # load partitioned data
-   rdd = sc.parallelize(read_timeseries_data())
+   rdd1 = sc.parallelize(read_timeseries_data())
 
    # construct execution graph
-   results = rdd.map(calculate_change_detection())
+   rdd2 = rdd1.map(calculate_change_detection())
 
    # save calculation results
-   save_to_cassandra(results)
+   save_to_cassandra(rdd2)
 
    # shut down Spark cluster
    sc.close()
@@ -84,6 +84,8 @@ There are three executables in lcmap-spark: (1) ``spark-shell``, (2) ``pyspark``
 * ``notebook`` is a Jupyter Notebook server
 
 See https://spark.apache.org/docs/latest/quick-start.html for more information on ``spark-shell`` and ``pyspark``.
+
+See https://jupyter.org/ to learn about Jupyter Notebooks.
 
   
 Distributed Mode
