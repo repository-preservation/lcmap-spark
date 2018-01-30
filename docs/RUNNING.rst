@@ -73,7 +73,7 @@ There are two modes for lcmap-spark: (1) ``distributed`` and (2) ``non-distribut
 
 * ``distributed`` mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
 * ``non-distributed`` mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
-* Switching between modes is achieved through environment variables or parameters.
+* Switching modes is achieved by setting parameters during cluster creation
 
 See httpsmodes for configuring distributed and non-distributed 
   
@@ -144,18 +144,6 @@ Example
 
     <insert example>
 
-
-
-
-Anatomy of an Interactive Spark Session
----------------------------------------
-spark, pyspark or Jupyter Notebook
-Create Spark Cluster
-* with ``spark`` and ``pyspark`` this is done for you, with Jupyter you must do this yourself.
-Load partitioned input data
-Execute functions
-Examine function outputs
-Optionally retrieve and store outputs
 
 
 Developing A SEE application
