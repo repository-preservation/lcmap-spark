@@ -25,11 +25,11 @@ lcmap-spark targets and is tested against Apache Mesos for distributed computing
 
 Anatomy of A Spark Job
 ----------------------
-1. Create Spark Cluster
+1. Create SparkContext
 2. Load and partition input data
 3. Construct execution graph
 4. Save calculation results
-5. Shut down Spark Cluster
+5. Shut down SparkContext
 
 .. code-block:: python
 
@@ -38,7 +38,7 @@ Anatomy of A Spark Job
 
    import pyspark
 
-   # create Spark cluster
+   # create Spark context
    sc = pyspark.SparkContext()
 
    # load and partition input data (10 partitions)
@@ -50,7 +50,7 @@ Anatomy of A Spark Job
    # save calculation results
    save_to_cassandra(rdd2)
 
-   # shut down Spark cluster
+   # shut down Spark context
    sc.close()
 
 Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.
@@ -125,15 +125,15 @@ Modes
 -----
 There are two modes for lcmap-spark: ``distributed`` and ``non-distributed``.
 
-* ``distributed`` mode takes advantage of Apache Mesos as a resource manager, which allows Spark to run functions in parallel across many physical hosts.
-* ``non-distributed`` mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
-* Switching modes is achieved by setting parameters during cluster creation
+* ``cluster`` mode executes Spark applications in parallel across many physical hosts
+* ``local`` mode executes Spark applications on the local host system only
+* Switching modes is achieved by setting parameters during SparkContext creation
 
 See httpsmodes for configuring distributed and non-distributed 
   
                
-Distributed Mode
-----------------
+Cluster Mode
+------------
 Distributed mode uses Apache Mesos as a resource manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
 
 In order to run a distributed instance of lcmap-spark, you must have the ability to run a Docker container locally, and you must have network access to a Mesos Master, ideally over a 10 Gigabit or greater network.  
@@ -149,10 +149,10 @@ When connecting to Mesos the same local Docker image is automatically downloaded
 Running lcmap-spark on a standalone cluster or on Yarn have not been tested.
 
 
-Non-distributed Mode
+Local Mode
 --------------------
-The only requirement for running a non-distributed instance of lcmap-spark is the ability to start a Docker container.
-Create Spark Cluster
+The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
+Create SparkContext
 Specify CPU and memory 
 
 
@@ -165,6 +165,8 @@ When running on Mesos, Spark also provides two modes: (1) Client Mode (2) Cluste
 ``lcmap-spark`` targets (1) Client Mode using the Docker containerizer.
 
 Mesos based runtime configuration and instructions.
+
+Mesos client vs cluster mode.
 
 SSL Certificates for Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
