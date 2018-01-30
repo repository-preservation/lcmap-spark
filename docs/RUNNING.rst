@@ -1,7 +1,50 @@
 lcmap-spark  - WIP
 ==================
 
-lcmap-spark is the application of Apache Spark for the LCMAP SEE.
+A simple, portable environment for executing science models and performing exploratory analysis at scale.
+
+What is Spark?
+--------------
+`From the website <https://spark.apache.org/`_, Apache Spark is a fast and general engine for large scale data processing.  It can run on a laptop or on thousands of machines, processes data too big to fit in memory, and moves functions to data rather than data to functions.
+
+Spark has connectors to many data sources, offers interactive development and is open source.
+
+Read more about Spark: https://spark.apache.org.
+
+What is LCMAP-Spark?
+--------------------
+LCMAP-Spark is a fully configured, ready to go Docker base image for the LCMAP Science Execution Environment.  It contains Apache Spark, the Spark-Cassandra Connector, and a Jupyter Notebook server to quickly allow science developers to get up and running on the LCMAP SEE.
+
+A base set of Python libraries are already installed for creating time series data out of LCMAP Information Warehouse and Datastore Analysis Ready Data.  Conda is configured and available for installing additional packages.
+
+Applications can be developed on a laptop using LCMAP-Spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.
+
+LCMAP-Spark targets and is tested against Apache Mesos for distributed computing.
+
+Anatomy of A Spark Job
+----------------------
+1. Create Spark Cluster
+2. Load partitioned input data
+3. Construct execution graph
+4. Save calculation results
+
+.. code-block:: python
+
+   import pyspark
+
+   # create Spark cluster
+   spark_context = pyspark.SparkContext()
+
+   # load partitioned data
+   rdd = spark_context.parallelize(read_timeseries_data())
+
+   # construct execution graph
+   results = rdd.map(calculate_change_detection())
+
+   # save calculation results
+   save_to_cassandra(results)
+
+Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.  The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.  The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once and thus handling datasets that are much larger than available physical memory.
 
 Shippable Artifacts
 -------------------
@@ -9,9 +52,9 @@ The shippable artifact for lcmap-spark is a Docker image published to https://hu
 
 * Contains all code and libraries necessary to connect to LCMAP SEE
 * Provides a consistent, immutable execution environment
-* Is a base image only, suitable for exploratory analysis or as starting points for derivative images
+* Is a base image, suitable for exploratory analysis or as starting points for derivative images
 
-SEE applications are independent software projects, publishing their own Docker images derived from lcmap-spark.
+LCMAP SEE applications are independent software projects, publishing their own Docker images derived from lcmap-spark.
 
 
 Modes
@@ -22,6 +65,7 @@ There are two modes for lcmap-spark: (1) ``distributed`` and (2) ``non-distribut
 * ``non-distributed`` mode runs the Spark application on the local host system only, but is able to use all the available CPU cores and memory on that host.
 * Switching between modes is achieved through environment variables or parameters.
 
+See httpsmodes for configuring distributed and non-distributed 
   
 Executables
 -----------
@@ -91,17 +135,6 @@ Example
     <insert example>
 
 
-Anatomy of A Spark Job
-----------------------
-Spark Job is really a canned Spark Session
-Create Spark Cluster
-Spark Jobs
-Load partitioned input data
-Executing functions
-Lazy, immutable data
-Caching intermediate results
-Retrieving calculation results
-Storing results
 
 
 Anatomy of an Interactive Spark Session
