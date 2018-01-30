@@ -33,8 +33,8 @@ Anatomy of A Spark Job
 
 .. code-block:: python
 
-   # This example assumes read_timeseries_data, calculate_change_detection and save_to_cassandra
-   # exist elsewhere in your codebase, they are not part of Spark.
+   # Assumes read_timeseries_data, calculate_change_detection and save_to_cassandra
+   # exist elsewhere in your codebase... they are not part of Spark.
 
    import pyspark
 
@@ -52,13 +52,64 @@ Anatomy of A Spark Job
 
    # shut down Spark cluster
    sc.close()
-   
+
 Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.
 
 The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.
 
 The laziness of RDDs is key, as it allows Spark to avoid realizing the full dataset at once, which means datasets much larger than available physical memory may be operated on.
 
+Running A Spark Job
+-------------------
+Spark jobs may be executed from a Jupyter Notebook, a Spark shell, or from the command line.
+
+* ``spark-submit`` runs Spark jobs from a command line
+* ``spark-shell`` is a Scala shell
+* ``pyspark`` is a Python shell
+* ``notebook`` is a Jupyter Notebook server
+
+See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.org for more information.
+
+.. code-block:: bash
+
+    # Run any job from the command line
+    docker run -it \
+               --rm \
+               --user=`id -u` \
+               --network=host \
+               --pid=host \
+               usgseros/lcmap-spark:latest \
+               spark-submit your_spark_job.py
+
+    # Run Scala jobs interactively from the Scala shell
+    docker run -it \
+               --rm \
+               --user=`id -u` \
+               --network=host \
+               --pid=host \
+               usgseros/lcmap-spark:latest \
+               spark-shell
+
+    # Run Python jobs interactively from the PySpark shell
+    docker run -it \
+               --rm \
+               --user=`id -u` \
+               --network=host \
+               --pid=host \
+               usgseros/lcmap-spark:latest \
+               pyspark
+
+    # Run any job interactively from the Jupyter Notebook server
+    docker run -it \
+               --rm \
+               --user=`id -u` \
+               --network=host \
+               --pid=host \
+               --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
+               usgseros/lcmap-spark:latest \
+               jupyter --ip=$HOSTNAME notebook
+
+               
 Shippable Artifacts
 -------------------
 The shippable artifact for lcmap-spark is a Docker image published to https://hub.docker.com/r/usgseros/lcmap-spark/.
@@ -80,54 +131,6 @@ There are two modes for lcmap-spark: ``distributed`` and ``non-distributed``.
 
 See httpsmodes for configuring distributed and non-distributed 
   
-Executables
------------
-There are four executables in lcmap-spark: ``spark-submit``,  ``spark-shell``, ``pyspark`` and ``notebook``
-
-* ``spark-submit`` runs Spark jobs from a command line
-* ``spark-shell`` is a Scala shell
-* ``pyspark`` is a Python shell
-* ``notebook`` is a Jupyter Notebook server
-
-See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.org for more information.
-
-Running
--------
-
-`Full documentation. <docs/RUNNING.rst/>`_
-
-.. code-block:: bash
-
-    # Run the Jupyter Notebook server
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
-               usgseros/lcmap-spark:latest \
-               jupyter --ip=$HOSTNAME notebook
-
-
-    # Run the PySpark shell
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               usgseros/lcmap-spark:latest \
-               pyspark
-
-
-    # Run spark-submit
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               usgseros/lcmap-spark:latest \
-               spark-submit
-
                
 Distributed Mode
 ----------------
