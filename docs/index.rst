@@ -33,6 +33,9 @@ Anatomy of A Spark Job
 
 .. code-block:: python
 
+   # This example assumes read_timeseries_data, calculate_change_detection and save_to_cassandra
+   # exist elsewhere in your codebase, they are not part of Spark.
+
    import pyspark
 
    # create Spark cluster
@@ -49,7 +52,7 @@ Anatomy of A Spark Job
 
    # shut down Spark cluster
    sc.close()
-
+   
 Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.
 
 The fundamental data structure used is a Resilient Distributed Dataset, which is a lazy `"collection of elements partitioned across the nodes of the cluster that can be operated on in parallel." <https://spark.apache.org/docs/latest/rdd-programming-guide.html>`_.
