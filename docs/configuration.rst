@@ -83,8 +83,7 @@ If you wish to pass these values in from the host machine at runtime, consider s
 
 Notebooks may be persisted on the host filesystem and loaded at runtime into Docker, keeping notebook management and version control outside of lcmap-spark.
 
-Set the ``-u`` flag value equal to ``eval id -u`` to properly translate file permissions between the host system user and the Docker container user.
-
+Set the ``-u`` Docker flag value to match the host system user's UID to avoid improper file permissions when mounting volumes.
 
 Cluster Mode
 ------------
