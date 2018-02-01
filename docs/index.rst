@@ -15,11 +15,11 @@ What is LCMAP-Spark?
 --------------------
 lcmap-spark is a ready to go Docker base image for the LCMAP Science Execution Environment.
 
-It contains Apache Spark, the Spark-Cassandra Connector and a Jupyter Notebook server to quickly allow science developers to get up and running on the LCMAP SEE.
+It contains Apache Spark, the Spark-Cassandra Connector, and a Jupyter Notebook server to quickly allow science developers to get up and running on the LCMAP SEE.
 
-A base set of Python libraries are already installed for creating time series data out of LCMAP Information Warehouse and Datastore Analysis Ready Data.  Conda is configured and available for installing additional packages.
+A base set of data access and manipulation libraries (lcmap-merlin & numpy with MKL) are already installed, so time series creation works out of the box.  Conda and pip3 are configured and available for installing additional packages.
 
-Applications can be developed on a laptop using lcmap-spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.
+Applications can be developed on a laptop using lcmap-spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.  Applications live in derivative Docker images, which inherit all the goodness lcmap-spark offers for free.
 
 lcmap-spark targets and is tested against Apache Mesos for distributed computing.
 
@@ -134,22 +134,20 @@ See <docs/configuration.rst> for mode configuration.
                
 Developing A SEE application
 ============================
-Python 3 is installed.
+Python3 is installed.
 Merlin is installed.
+Conda is installed.
+Jupyter is installed.
 
-Installing System Dependencies
+Installing Additional System Dependencies
 ------------------------------
-* conda
-* yum
+* sudo conda install X
+* sudo yum install X
 
-Installing Python Dependencies
+Installing Additional Python Dependencies
 ------------------------------
-* conda
-* pip
-
-Installing JVM Dependencies
----------------------------
-* maven
+* sudo conda install X
+* sudo pip install X
 
 Derivative Docker Image
 -----------------------
