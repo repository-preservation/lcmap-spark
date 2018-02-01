@@ -19,11 +19,9 @@ It contains Apache Spark, the Spark-Cassandra Connector, and a Jupyter Notebook 
 
 A base set of data access and manipulation libraries (lcmap-merlin & numpy with MKL) are already installed, so time series creation works out of the box.  Conda and pip3 are configured and available for installing additional packages.
 
-Applications can be developed on a laptop using lcmap-spark and when they are ready for prime time, published and run at scale through simple configuration values: No code changes are necessary.
+lcmap-spark provides a consistent and portable runtime environment: Applications developed on a laptop can be published and run at scale through simple configuration values with zero code changes.  No more worrying about scaling your applications.  Just write your application to use the Apache Spark API, test it, package it, publish it, then turn it loose on the SEE.
 
-And since applications live in their own derivative Docker image, they inherit all the goodness lcmap-spark offers for free.
-
-lcmap-spark targets and is tested against Apache Mesos for distributed computing.
+lcmap-spark uses Apache Mesos as its cluster manager for distributed computing.
 
 Anatomy of A Spark Job
 ----------------------
