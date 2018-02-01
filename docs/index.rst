@@ -132,7 +132,7 @@ There are two modes for lcmap-spark: ``cluster`` and ``local``.
 * Switching modes is achieved by setting parameters during SparkContext creation
 
 See `<modes.rst/>`_ for mode configuration.
-  
+
                
 Developing A SEE application
 ============================
