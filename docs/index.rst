@@ -131,7 +131,7 @@ There are two modes for lcmap-spark: ``cluster`` and ``local``.
 * ``local`` mode executes Spark applications on the local host system only
 * Switching modes is achieved by setting parameters during SparkContext creation
 
-See <docs/configuration.rst> for mode configuration.
+See `<modes.rst/>`_ for mode configuration.
   
                
 Developing A SEE application

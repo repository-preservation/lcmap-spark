@@ -1,8 +1,8 @@
-Cluster Mode
-----------------
+Modes
+=====
 
 Local Mode
---------------------
+----------
 
 Cluster Mode
 ------------
@@ -27,9 +27,17 @@ Running lcmap-spark on a standalone cluster or on Yarn have not been tested.
 Local Mode
 --------------------
 The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
-Create SparkContext
-Specify CPU and memory 
 
+.. code-block:: bash
+   
+   docker run -it --rm --net=host -u=`id -u` usgseros/lcmap-spark:latest \
+          pyspark --master local[*] \
+                  --total-executor-cores 4 \
+                  --driver-memory 1024m \
+                  --executor-memory 1024m \
+                  --conf spark.app.name=$USER \
+                  --conf spark.driver.host=$HOSTNAME
+ 
 
 Mesos
 -----
