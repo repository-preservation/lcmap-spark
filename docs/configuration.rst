@@ -11,12 +11,12 @@ pyspark
 .. code-block:: bash
    
    docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
-          pyspark --master local[*] \
-                  --total-executor-cores 4 \
-                  --driver-memory 1024m \
-                  --executor-memory 1024m \
-                  --conf spark.app.name=$USER \
-                  --conf spark.driver.host=$HOSTNAME
+              pyspark --master local[*] \
+                      --total-executor-cores 4 \
+                      --driver-memory 1024m \
+                      --executor-memory 1024m \
+                      --conf spark.app.name=$USER \
+                      --conf spark.driver.host=$HOSTNAME
 
 spark-shell
 ~~~~~~~~~~~
@@ -24,12 +24,12 @@ spark-shell
 .. code-block:: bash
    
    docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
-          spark-shell --master local[*] \
-                      --total-executor-cores 4 \
-                      --driver-memory 1024m \
-                      --executor-memory 1024m \
-                      --conf spark.app.name=$USER \
-                      --conf spark.driver.host=$HOSTNAME
+              spark-shell --master local[*] \
+                          --total-executor-cores 4 \
+                          --driver-memory 1024m \
+                          --executor-memory 1024m \
+                          --conf spark.app.name=$USER \
+                          --conf spark.driver.host=$HOSTNAME
 
 spark-submit
 ~~~~~~~~~~~~
@@ -49,15 +49,14 @@ spark-submit
 
 .. code-block:: bash
 
-   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
-              -v /home/user/jobs:/home/lcmap/jobs \
-          spark-submit --master local[*] \
-                       --total-executor-cores 4 \
-                       --driver-memory 1024m \
-                       --executor-memory 1024m \
-                       --conf spark.app.name=$USER\
-                       --conf spark.driver.host=$HOSTNAME \
-                       jobs/job.py
+   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest -v /home/user/jobs:/home/lcmap/jobs \
+              spark-submit --master local[*] \
+                           --total-executor-cores 4 \
+                           --driver-memory 1024m \
+                           --executor-memory 1024m \
+                           --conf spark.app.name=$USER\
+                           --conf spark.driver.host=$HOSTNAME \
+                           jobs/job.py
 
 This examples assumes a Python job module is available at ```/home/user/jobs/job.py``` on the host system.
 
@@ -73,8 +72,7 @@ notebook
 
 .. code-block:: bash
 
-   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
-              -v /home/user/notebooks/demo:/home/lcmap/notebook/demo \
+   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest -v /home/user/notebooks/demo:/home/lcmap/notebook/demo \
               jupyter --ip=$HOSTNAME notebook
 
 Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
