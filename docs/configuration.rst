@@ -66,6 +66,8 @@ In this simple case a Docker volume mount was used to place ``job.py`` onto the 
 
 This works well for development and testing in ``local`` mode, but in ``cluster`` mode the job files must be
 built into the image.
+
+Learn more at https://spark.apache.org/docs/latest/submitting-applications.html.
                        
 notebook
 ~~~~~~~~
