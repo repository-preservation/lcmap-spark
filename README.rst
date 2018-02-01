@@ -26,7 +26,7 @@ Example
                
 Documentation
 -------------
-The full documentation `is here. <docs/INDEX.rst/>`_
+The full documentation `is here. <docs/index.rst/>`_
 
                
 Building
