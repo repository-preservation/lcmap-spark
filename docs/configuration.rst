@@ -33,7 +33,6 @@ spark-shell
 
 spark-submit
 ~~~~~~~~~~~~
-Assume Python job module is in ```/home/user/jobs/job.py```.
 
 .. code-block:: python
 
@@ -43,7 +42,7 @@ Assume Python job module is in ```/home/user/jobs/job.py```.
        sc = pyspark.SparkContext()
        rdd = sc.parallelize(range(3))
        print("Sum of range(3) is:{}".format(rdd.sum()))
-       sc.close()
+       sc.stop()
 
    if __name__ == '__main__':
        run()
@@ -60,9 +59,9 @@ Assume Python job module is in ```/home/user/jobs/job.py```.
                        --conf spark.driver.host=$HOSTNAME \
                        jobs/job.py
 
-Job files, in this case ``job.py``, must be accessible inside the Docker image.
+This examples assumes a Python job module is available at ```/home/user/jobs/job.py``` on the host system.
 
-In this simple case a Docker volume mount was used to place ``job.py`` onto the Docker filesystem.
+Job modules must be made accessible inside the Docker image at runtime, so in this simple case a Docker volume mount was used.
 
 This works well for development and testing in ``local`` mode, but in ``cluster`` mode the job files must be
 built into the image.
