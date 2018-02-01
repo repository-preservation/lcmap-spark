@@ -75,7 +75,7 @@ notebook
 
 .. code-block:: bash
 
-   docker run -it --rm --net host -u `id -u` -v /home/user/notebooks/demo:/home/lcmap/notebook/demo \
+   docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
               usgseros/lcmap-spark:latest \
               jupyter --ip=$HOSTNAME notebook
 
