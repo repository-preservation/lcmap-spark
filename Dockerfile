@@ -10,23 +10,12 @@ LABEL maintainer="USGS EROS LCMAP http://eros.usgs.gov http://github.com/usgs-er
 
 EXPOSE 8081 4040 8888
 
-RUN yum update -y && \
-    yum install -y sudo java-1.8.0-openjdk-devel.x86_64 && \
-    yum install -y http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-3.noarch.rpm && \
-    yum install -y mesos && \
-    yum -y downgrade mesos-1.4.0 && \
-    sudo yum clean all && \
-    sudo rm -rf /var/cache/yum && \
-    localedef -i en_US -f UTF-8 en_US.UTF-8
-
 ENV HOME=/home/lcmap \
     USER=lcmap \
     SPARK_HOME=/opt/spark \
     SPARK_NO_DAEMONIZE=true \
     PYSPARK_PYTHON=python3 \
     MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so \    
-    LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
     TINI_SUBREAPER=true \
     LIBPROCESS_SSL_ENABLED=1 \
     LIBPROCESS_SSL_SUPPORT_DOWNGRADE=1 \
@@ -41,45 +30,43 @@ ENV HOME=/home/lcmap \
     LIBPROCESS_SSL_CA_DIR=/certs \
     LIBPROCESS_SSL_ECDH_CURVE=auto
 
-ENV PATH=$SPARK_HOME/bin:${PATH}:$HOME/miniconda3/bin \
+ENV PATH=$SPARK_HOME/bin:${PATH} \
     PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
 # Add a user to run as inside the container to prevent accidental foo while mounting volumes.
 # Use "docker run -u `id -u`" at runtime to assign proper UIDs for file permissions.
 # Mesos username must match this username (and be assigned permissions by Mesos admin.)
-RUN adduser -ms /bin/bash lcmap && \
-    echo "lcmap ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/lcmap && \
-    chmod 0440 /etc/sudoers.d/lcmap
+
+RUN yum install -y sudo && \
+    adduser -ms /bin/bash $USER && \
+    echo "$USER ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USER && \
+    echo "alias sudo='sudo env PATH=$PATH'" > /etc/profile.d/sudo.sh && \
+    chmod 0440 /etc/sudoers.d/$USER
+
+COPY pom.xml /root
+COPY examples $HOME/notebook/examples
+
+RUN yum update  -y 
+RUN yum install -y java-1.8.0-openjdk-devel.x86_64 \
+                   http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-3.noarch.rpm \
+                   mesos \ 
+                   bzip2 \
+                   gcc  \
+                   maven
+RUN yum -y downgrade mesos-1.4.0
+RUN curl https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz -o /opt/spark.tgz
+RUN cd /opt && tar -zxf spark.tgz && rm -f spark.tgz &&  ln -s spark-* spark && cd -
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /root/mc.sh
+RUN bash /root/mc.sh -u -b -p /usr/local
+RUN conda install python=3.6 pip jupyter numpy --yes
+RUN pip install lcmap-merlin
+RUN mvn -f /root/pom.xml dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
+RUN yum erase -y maven gcc bzip2
+RUN yum clean all
+RUN rm -rf /var/cache/yum /root/.cache /root/.m2 /root/pom.xml /root/mc.sh
+RUN conda clean --all -y
+
 USER $USER
 WORKDIR $HOME
-
-# Install Spark
-RUN cd /opt && \
-    sudo curl https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz -o spark.tgz && \
-    sudo tar -zxf spark.tgz && \
-    sudo rm -f spark.tgz && \
-    sudo ln -s spark-* spark
-
-# Install miniconda then numpy from default repo for mkl based implementation.
-RUN sudo yum install -y bzip2 && \
-    curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o mc.sh && \
-    chmod 755 mc.sh && \
-    ./mc.sh -b && \
-    rm -rf mc.sh && \
-    sudo yum erase -y bzip2 && \
-    sudo yum clean all && \
-    conda install python=3.6 pip jupyter numpy --yes
-    
-# Install spark-cassandra connector
-COPY pom.xml .
-RUN sudo yum install -y maven  && \
-    sudo mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars && \
-    sudo yum erase -y maven && \
-    sudo yum clean all && \
-    sudo rm -rf /var/cache/yum && \
-    sudo rm -rf /root/.cache /root/.m2
-    sudo rm pom.xml
-
-COPY examples $HOME/notebook/examples
-RUN sudo chown -R lcmap:lcmap .
+RUN sudo chown -R $USER:$USER .
 

@@ -134,15 +134,24 @@ See <docs/configuration.rst> for mode configuration.
                
 Developing A SEE application
 ============================
+Python 3 is installed.
+Merlin is installed.
 
+Installing System Dependencies
+------------------------------
+* conda
+* yum
+
+Installing Python Dependencies
+------------------------------
+* conda
+* pip
+
+Installing JVM Dependencies
+---------------------------
+* maven
 
 Derivative Docker Image
 -----------------------
 
 ``FROM lcmap-spark:<version>``
-
-
-Installing Python Dependencies
-------------------------------
-Conda is installed.
-Python 3 is installed and available as python3.

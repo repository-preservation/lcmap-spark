@@ -7,5 +7,5 @@ build:
 
 push:
 	docker login
-        docker push $(IMAGE):$(TAG)
-        docker push $(IMAGE):latest
+	docker push $(IMAGE):$(TAG)
+	docker push $(IMAGE):latest
