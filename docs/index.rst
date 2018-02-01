@@ -53,7 +53,7 @@ Anatomy of A Spark Job
    save_to_cassandra(rdd2)
 
    # shut down Spark context
-   sc.close()
+   sc.stop()
 
 Apache Spark builds a directed acyclic graph of functions to be applied against the input data and only begins executing these functions when an action, such as saving data to Cassandra, is performed.
 
