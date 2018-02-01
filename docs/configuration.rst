@@ -70,6 +70,13 @@ Learn more at https://spark.apache.org/docs/latest/submitting-applications.html.
                        
 notebook
 ~~~~~~~~
+
+.. code-block:: bash
+
+   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
+              -v /home/user/notebooks/demo:/home/lcmap/notebook/demo \
+              jupyter --ip=$HOSTNAME notebook
+
 Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
 
 If you wish to pass these values in from the host machine at runtime, consider setting them as environment variables using the ``-e`` Docker flag and then accessing them through ``os.environ`` in your notebook.
@@ -77,12 +84,6 @@ If you wish to pass these values in from the host machine at runtime, consider s
 Notebooks may be persisted on the host filesystem and loaded at runtime into Docker, keeping notebook management and version control outside of lcmap-spark.
 
 Be sure to include the ``-u `id -u` `` flag so file permissions translate properly between the host system user and the Docker container user.
-
-.. code-block:: bash
-
-   docker run -it --rm --net host -u `id -u` usgseros/lcmap-spark:latest \
-              -v /home/user/notebooks/demo:/home/lcmap/notebook/demo \
-              jupyter --ip=$HOSTNAME notebook
 
 
 Cluster Mode
