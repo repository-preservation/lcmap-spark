@@ -83,7 +83,7 @@ If you wish to pass these values in from the host machine at runtime, consider s
 
 Notebooks may be persisted on the host filesystem and loaded at runtime into Docker, keeping notebook management and version control outside of lcmap-spark.
 
-Be sure to include the ``-u \`id -u\` `` flag so file permissions translate properly between the host system user and the Docker container user.
+Be sure to include the ``-u \`id -u` `` flag so file permissions translate properly between the host system user and the Docker container user.
 
 
 Cluster Mode
