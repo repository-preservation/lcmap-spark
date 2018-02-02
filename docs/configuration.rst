@@ -18,18 +18,19 @@ In this case, it is best to pass parameters through the environment with ``docke
 Volumes
 -------
 
-``spark-submit`` and ``jupyter notebook`` in local mode may require access to files that exist on the host filesystem.
+There are several cases where host files are needed on the Docker filesystem.
 
-This is accomplished by mounting Docker volumes using the ``-v /path/to/host/dir:/path/to/docker/dir`` flag.
+* Mesos certificates in cluster mode
+* Job files
+* Jupyter Notebooks
 
-There are several things to remember:
+Volumes may be mounted using the ``-v /path/to/host/dir:/path/to/docker/dir`` flag.
+
+Note:
 
 * Full paths must be specified
-* Set ``-u`` to match the host system user's UID so permissions match
-* Volumes are only for local mode
-* Cluster mode requires files be built in
-* Mesos certs only needed on host filesystem
-  
+* Set ``-u`` to the host system user's UID so permissions match
+
 Local Mode
 ----------
 The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
@@ -41,7 +42,7 @@ Cluster Mode
 
 https://spark.apache.org/docs/latest/cluster-overview.html
 
-Cluster mode uses Apache Mesos as a cluster manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
+Cluster mode uses Apache Mesos as a cluster manager for Spark, allowing Spark to run functions in parallel across many physical hosts.
 
 Cluster mode requirements are:
 
@@ -53,14 +54,14 @@ Cluster mode requirements are:
 * Mesos password
 * Mesos certificates
 
-When run in cluster mode, the lcmap-spark image is automatically downloaded onto the Mesos nodes and used to create Docker containers, which create the Spark cluster and execute Spark & application code.
+When run in cluster mode, the lcmap-spark image is automatically downloaded onto Mesos nodes and used to create Docker containers, which dynamically create the Spark cluster and execute application code.
 
 <INSERT DIAGRAM OF THIS HERE>
 
 Host System ---> lcmap-spark ---> SparkContext (Spark Master) ---> 
 ... Mesos Master ---> Mesos Executors ---> lcmap-spark ---> Spark Worker ---> **Bazinga**
 
-This provides a reliable way to create a consistent, immutable environment, dynamically, across a cluster of machines.
+This provides a reliable way to create a consistent, immutable environment across a cluster of machines.
 
 Apache Mesos
 ------------
