@@ -1,120 +1,35 @@
-Modes
-=====
+Configuration
+=============
 
+Parameters
+----------
+lcmap-spark configuration parameters are passed differently for ``pyspark``, ``spark-submit`` or ``notebook``.
+
+``pyspark`` and ``spark-submit`` are executables inside lcmap-spark that implicitly create a SparkContext.  Each executable has its own set of parameters.
+
+Parameters are passed to these executables in the same manner as non-Docker based installations.  See https://spark.apache.org/docs/latest/submitting-applications.html.
+
+``jupyter notebook`` is a general server process that does not implicitly create a SparkContext.
+
+In this case, it is best to pass parameters through the environment with ``docker run -e key=value`` so they may be parsed in notebook code with ``os.environ``.
+
+Volumes
+-------
+
+``spark-submit`` and ``jupyter notebook`` in local mode may require access to files that exist on the host filesystem.
+
+This is accomplished by mounting Docker volumes using the ``-v /path/to/host/dir:/path/to/docker/dir`` flag.
+
+There are several things to remember:
+* Full paths must be specified
+* Set ``-u`` to match the host system user's UID so permissions match
+* volumes are only for local mode
+* cluster mode requires files be built in
+  * mesos certs only needed on host filesystem
+  
 Local Mode
---------------------
+----------
 The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.  The Docker image must be built and available on the host machine but does not need to be published to https://hub.docker.com.
-
-pyspark
-~~~~~~~
-
-.. code-block:: bash
-   
-   docker run -it --rm --net host -u `id -u` \
-              usgseros/lcmap-spark:latest \
-              pyspark --master local[*] \
-                      --total-executor-cores 4 \
-                      --driver-memory 1024m \
-                      --executor-memory 1024m \
-                      --conf spark.app.name=$USER \
-                      --conf spark.driver.host=$HOSTNAME
-
-spark-submit
-~~~~~~~~~~~~
-https://spark.apache.org/docs/latest/submitting-applications.html
-
-.. code-block:: python
-
-   import pyspark
-
-   def run():
-       sc = pyspark.SparkContext()
-       rdd = sc.parallelize(range(3))
-       print("Sum of range(3) is:{}".format(rdd.sum()))
-       sc.stop()
-
-   if __name__ == '__main__':
-       run()
-
-.. code-block:: bash
-
-   docker run -it --rm --net host -u `id -u` -v /home/user/jobs:/home/lcmap/jobs \
-              usgseros/lcmap-spark:latest \
-              spark-submit --master local[*] \
-                           --total-executor-cores 4 \
-                           --driver-memory 1024m \
-                           --executor-memory 1024m \
-                           --conf spark.app.name=$USER\
-                           --conf spark.driver.host=$HOSTNAME \
-                           jobs/job.py
-
-This examples assumes a Python job module is available at ```/home/user/jobs/job.py``` on the host system.
-
-Job modules must be made accessible inside the Docker image at runtime, so in this simple case a Docker volume mount was used.
-
-This works well for development and testing in ``local`` mode, but in ``cluster`` mode the job files must be
-built into the image.
-                       
-notebook
-~~~~~~~~
-
-.. code-block:: bash
-
-   export IMAGE="usgseros/lcmap-spark:latest"
-   export MASTER="local[*]"
-
-   docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
-              -e IMAGE=$IMAGE \
-              -e MASTER=$MASTER \
-              $IMAGE \
-              jupyter --ip=$HOSTNAME notebook
-
-.. code-block:: python
-
-   """Example Notebook connecting to Spark"""
-   
-   import os
-   import pyspark
-
-   
-   def conf():
-       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
-               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
-               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
-               'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
-               'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
-               'spark.mesos.executor.docker.forcePullImage': 'false',
-               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
-               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
-               'spark.python.worker.memory':                 '1g',
-               'spark.executor.cores':                       '1',
-               'spark.cores.max':                            '1000',
-               'spark.executor.memory':                      '4g'}
-
-               
-   def context(conf):
-       return pyspark.SparkContext(master=os.environ['MASTER'],
-                                   appName='lcmap-spark:{}'.format(os.environ['USER']),
-                                   conf=pyspark.SparkConf().setAll([conf]))
-
-                                   
-   def application():
-       sc = None
-       try:
-           sc   = context(conf())
-           rdd  = sc.parallelize(range(1000000))
-           return {'min': rdd.min(), 'max': rdd.max()}
-       finally:
-           sc.stop()
-
-           
-Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
-
-If you wish to pass these values in from the host machine at runtime, consider setting them as environment variables using the ``-e`` Docker flag and then accessing them through ``os.environ`` in your notebook.
-
-Notebooks may be persisted on the host filesystem and loaded at runtime into Docker, keeping notebook management and version control outside of lcmap-spark.
-
-Set the ``-u`` Docker flag value to match the host system user's UID to avoid improper file permissions when mounting volumes.
 
 Cluster Mode
 ------------
@@ -143,111 +58,6 @@ Host System ---> lcmap-spark ---> SparkContext (Spark Master) --->
 
 This provides a reliable way to create a consistent, immutable environment, dynamically, across a cluster of machines.
 
-pyspark
-~~~~~~~
-
-.. code-block:: bash
-                
-   docker run -it --rm --net host -u `id -u` -v /home/user/mesos-keys:/certs
-              usgseros/lcmap-spark:latest \
-              pyspark --master <mesos://zk://host1:2181,host2:2181,host3:2181/mesos> \
-                      --total-executor-cores 4 \
-                      --driver-memory 1024m \
-                      --executor-memory 1024m \
-                      --conf spark.app.name=$USER:pyspark \
-                      --conf spark.driver.host=$HOSTNAME \
-                      --conf spark.mesos.principal=<MESOS_PRINCIPAL> \
-                      --conf spark.mesos.secret=<MESOS_SECRET> \
-                      --conf spark.mesos.role=<MESOS_ROLE> \
-                      --conf spark.mesos.executor.docker.image=usgseros/lcmap-spark:latest \
-                      --conf spark.mesos.executor.docker.forcePullImage=false \
-                      --conf spark.mesos.task.labels=$USER:demo
-                      
-spark-submit
-~~~~~~~~~~~~
-
-.. code-block:: bash
-
-   import pyspark
-
-   def run():
-       sc = pyspark.SparkContext()
-       rdd = sc.parallelize(range(3))
-       print("Sum of range(3) is:{}".format(rdd.sum()))
-       sc.stop()
-
-   if __name__ == '__main__':
-       run()
-
-.. code-block:: bash
-
-   docker run -it --rm --net host -u `id -u` -v /home/user/jobs:/home/lcmap/jobs \
-              usgseros/lcmap-spark:latest \
-              spark-submit --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
-                           --total-executor-cores 4 \
-                           --driver-memory 1024m \
-                           --executor-memory 1024m \
-                           --conf spark.app.name=$USER\
-                           --conf spark.driver.host=$HOSTNAME \
-                           jobs/job.py
-
-
-notebook
-~~~~~~~~
-
-.. code-block:: bash
-
-   export IMAGE="usgseros/lcmap-spark:latest"
-   export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
-
-   docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
-              -e IMAGE=$IMAGE \
-              -e MASTER=$MASTER \
-              -e MESOS_PRINCIPAL=$MESOS_PRINCIPAL \
-              -e MESOS_SECRET=$MESOS_SECRET \
-              -e MESOS_ROLE=$MESOS_ROLE \
-              $IMAGE \
-              jupyter --ip=$HOSTNAME notebook
-
-.. code-block:: python
-
-   """Example Notebook connecting to Spark"""
-
-   import os
-   import pyspark
-
-   
-   def conf():
-       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
-               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
-               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
-               'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
-               'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
-               'spark.mesos.executor.docker.forcePullImage': 'false',
-               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
-               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
-               'spark.python.worker.memory':                 '1g',
-               'spark.executor.cores':                       '1',
-               'spark.cores.max':                            '1000',
-               'spark.executor.memory':                      '4g'}
-
-               
-   def context(conf):
-       return pyspark.SparkContext(master=os.environ['MASTER'],
-                                   appName='lcmap-spark:{}'.format(os.environ['USER']),
-                                   conf=pyspark.SparkConf().setAll([conf]))
-
-                                   
-   def application():
-       sc = None
-       try:
-           sc   = context(conf())
-           rdd  = sc.parallelize(range(1000000))
-           return {'min': rdd.min(), 'max': rdd.max()}
-       finally:
-           sc.stop()
-
-
 Apache Mesos
 ------------
 https://spark.apache.org/docs/latest/running-on-mesos.html
@@ -275,9 +85,23 @@ Mount a volume at runtime as including them in a published image constitutes a s
 
     docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>
 
-Example
-~~~~~~~
+pyspark
+-------
+https://spark.apache.org/docs/latest/rdd-programming-guide.html
+<local mode example>
+<cluster mode example>
 
-.. code-block:: bash
+spark-submit
+------------
+https://spark.apache.org/docs/latest/submitting-applications.html
+<local mode example>
+<cluster mode example>
 
-    <insert example>
+notebook
+--------
+https://jupyter-notebook.readthedocs.io/en/stable/
+<local mode example>
+<cluster mode example>
+
+
+

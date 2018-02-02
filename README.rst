@@ -26,7 +26,9 @@ Example
                
 Documentation
 -------------
-The full documentation `is published here. <docs/index.rst/>`_
+* `Starting Out <docs/start.rst/>`_
+* `Configuration <docs/configuration.rst/>`_
+* `Examples <docs/examples.rst/>`_
 
                
 Building
