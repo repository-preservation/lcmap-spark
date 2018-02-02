@@ -141,7 +141,6 @@ notebook - local mode
 
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
-              -e IMAGE=$IMAGE \
               -e MASTER=$MASTER \
               $IMAGE \
               jupyter --ip=$HOSTNAME notebook
