@@ -107,7 +107,7 @@ The SparkContext maintains it's reservation on resources as long as it exists, k
 Once ``.stop()`` is called on the SparkContext, it releases it's resource reservation and the cluster is gone.      
 
 .. figure:: imgs/spark-context-workers.png
-   :scale: 50 %
+   :scale: 25 %
    :alt: SparkContext and Spark Workers
 
 Running Spark on Mesos in Docker provides a reliable way to dynamically create a consistent, immutable execution environment across a cluster of machines.
