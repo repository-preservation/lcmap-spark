@@ -198,6 +198,7 @@ notebook
 
    import os
    import pyspark
+
    
    def conf():
        return {'spark.driver.host':                          os.environ['HOSTNAME'], 
@@ -212,17 +213,20 @@ notebook
                'spark.executor.cores':                       '1',
                'spark.cores.max':                            '1000',
                'spark.executor.memory':                      '4g'}
-       
+
+               
    def context(conf):
        return pyspark.SparkContext(master=os.environ['MASTER'],
                                    appName='lcmap-spark:{}'.format(os.environ['USER']),
-                                   conf=conf)
+                                   conf=pyspark.SparkConf().setAll([conf]))
+
+                                   
    def application():
        sc = None
        try:
            sc  = context(conf())
            rdd = sc.parallelize(range(3))
-           assert rdd.sum() == 6
+           return rdd.sum() == 6
        finally:
            sc.stop()
 
