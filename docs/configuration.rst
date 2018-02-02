@@ -48,6 +48,22 @@ In order to properly overlay a dynamic Spark cluster on top of Mesos, only ``--n
 
 This eases host system access to Jupyter Notebooks in local or cluster mode as well.
 
+Notebooks
+---------
+
+lcmap-spark's Jupyter Notebook server expects it's notebook directory to be at ``/home/lcmap/notebook`` by default.
+
+Mount a volume from the host filesystem to this location when running the notebook server.
+
+.. code-block:: bash
+
+   docker run -u `id -u` \
+              -v /your/notebooks:/home/lcmap/notebook \
+              <other flags>
+              usgseros/lcmap-spark:latest \
+              jupyter --ip=$HOSTNAME notebook
+
+
 Local Mode
 ----------
 The only requirement for running lcmap-spark in local mode is the ability to start a Docker container.
