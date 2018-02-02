@@ -26,6 +26,7 @@ pyspark - cluster mode
 .. code-block:: bash
 
    export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos" \
    export MESOS_PRINCIPAL=<MESOS_PRINCIPAL>
    export MESOS_SECRET=<MESOS_SECRET>
    export MESOS_ROLE=<MESOS_ROLE>
@@ -33,7 +34,7 @@ pyspark - cluster mode
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/mesos-keys:/certs \
               $IMAGE \
-              pyspark --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
+              pyspark --master $MASTER \
                       --total-executor-cores 4 \
                       --driver-memory 1024m \
                       --executor-memory 1024m \
@@ -147,33 +148,31 @@ notebook - local mode
 
 .. code-block:: python
 
-   """Example Notebook connecting to Spark"""
-   
    import os
    import pyspark
 
-   
+
    def conf():
-       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
-               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
-               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
+       return {'spark.driver.host':                          os.environ['HOSTNAME'],
+               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''),
+               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''),
                'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
                'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
                'spark.mesos.executor.docker.forcePullImage': 'false',
-               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
-               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
+               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),
+               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',
                'spark.python.worker.memory':                 '1g',
                'spark.executor.cores':                       '1',
                'spark.cores.max':                            '1000',
                'spark.executor.memory':                      '4g'}
 
-               
+
    def context(conf):
        return pyspark.SparkContext(master=os.environ['MASTER'],
                                    appName='lcmap-spark:{}'.format(os.environ['USER']),
-                                   conf=pyspark.SparkConf().setAll([conf]))
+                                   conf=pyspark.SparkConf().setAll(conf.items()))
 
-                                   
+
    def application():
        sc = None
        try:
@@ -182,6 +181,9 @@ notebook - local mode
            return {'min': rdd.min(), 'max': rdd.max()}
        finally:
            sc.stop()
+
+   # run it
+   application()
 
 
 notebook - cluster mode
@@ -209,32 +211,32 @@ notebook - cluster mode
 .. code-block:: python
 
    """Example Notebook connecting to Spark"""
-
+   
    import os
    import pyspark
 
-   
+
    def conf():
-       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
-               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
-               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
+       return {'spark.driver.host':                          os.environ['HOSTNAME'],
+               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''),
+               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''),
                'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
                'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
                'spark.mesos.executor.docker.forcePullImage': 'false',
-               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
-               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
+               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),
+               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',
                'spark.python.worker.memory':                 '1g',
                'spark.executor.cores':                       '1',
                'spark.cores.max':                            '1000',
                'spark.executor.memory':                      '4g'}
 
-               
+
    def context(conf):
        return pyspark.SparkContext(master=os.environ['MASTER'],
                                    appName='lcmap-spark:{}'.format(os.environ['USER']),
-                                   conf=pyspark.SparkConf().setAll([conf]))
+                                   conf=pyspark.SparkConf().setAll(conf.items()))
 
-                                   
+
    def application():
        sc = None
        try:
@@ -244,3 +246,5 @@ notebook - cluster mode
        finally:
            sc.stop()
 
+   # run it
+   application()
