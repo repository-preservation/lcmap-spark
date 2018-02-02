@@ -107,8 +107,8 @@ When run in cluster mode, the lcmap-spark image is automatically downloaded onto
 
 <INSERT DIAGRAM OF THIS HERE>
 
-Host System ---> lcmap-spark ---> SparkContext (Spark Master) ---> Mesos Master ...
-... SparkContext (Spark Master) ---> Mesos Master ---> Mesos Executors ---> lcmap-spark ---> Spark Worker ---> **Bazinga**
+Host System ---> lcmap-spark ---> SparkContext (Spark Master) ---> 
+... Mesos Master ---> Mesos Executors ---> lcmap-spark ---> Spark Worker ---> **Bazinga**
 
 
 
