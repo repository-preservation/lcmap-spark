@@ -27,15 +27,12 @@ Example
 Requirements
 ------------
 
-* local mode
-  * Docker installed locally
-* cluster mode
-  * Docker installed locally
-  * network access to Mesos Master
-  * Mesos username
-  * Mesos role
-  * Mesos password
-  * Mesos certificates
+* Docker
+* network access to Mesos Master (optional)
+* Mesos username (optional)
+* Mesos role (optional)
+* Mesos password (optional)
+* Mesos certificates (optional)
                
 Documentation
 -------------
