@@ -102,9 +102,9 @@ When run in cluster mode, the lcmap-spark image is automatically downloaded onto
 
 After a Spark cluster is started using Mesos, it behaves as any Spark cluster would if started manually.
 
-The SparkContext maintains it's reservation on resources as long as it exists, keeping the cluster alive.
+The SparkContext maintains it's reservation on resources with the Mesos Master, keeping the cluster alive.
 
-Once ``.stop()`` is called on the SparkContext, it releases it's resource reservation and the cluster is gone.      
+Once ``.stop()`` is called on the SparkContext, it releases it's resource reservation and the Spark cluster is shut down.      
 
 Running Spark on Mesos in Docker provides a reliable way to dynamically create a consistent, immutable execution environment across a cluster of machines.
 
