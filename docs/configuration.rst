@@ -193,13 +193,13 @@ Apache Mesos
 ------------
 https://spark.apache.org/docs/latest/running-on-mesos.html
 
-When running on Mesos, Spark also provides two modes: (1) Client Mode (2) Cluster Mode.
+When running on Mesos, there are two modes that determine where the *driver program* runs: client and cluster.
 
-``lcmap-spark`` targets (1) Client Mode using the Docker containerizer.
+This should not be confused with local and cluster modes for Spark previously discussed, which determine where the *executors* run.
+
+lcmap-spark uses client mode only, which means the driver program (SparkContext) will always run on the local host machine.
 
 Mesos based runtime configuration and instructions.
-
-Mesos client vs cluster mode.
 
 SSL Certificates for Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
