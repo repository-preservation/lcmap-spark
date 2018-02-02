@@ -205,7 +205,7 @@ notebook
                'spark.mesos.principal':                      os.environ['MESOS_PRINCIPAL'], 
                'spark.mesos.secret':                         os.environ['MESOS_SECRET'], 
                'spark.mesos.role':                           os.environ['MESOS_ROLE'],
-               'spark.mesos.executor.docker.image':          'usgseros/lcmap-spark:latest,
+               'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
                'spark.mesos.executor.docker.forcePullImage': 'false',
                'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
                'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
