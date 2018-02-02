@@ -26,6 +26,7 @@ Example
 
 Requirements
 ------------
+
 * local mode
   * Docker installed locally
 * cluster mode
