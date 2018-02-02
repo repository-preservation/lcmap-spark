@@ -7,7 +7,9 @@ lcmap-spark configuration parameters are passed differently for ``pyspark``, ``s
 
 ``pyspark`` and ``spark-submit`` are executables inside lcmap-spark that implicitly create a SparkContext.
 
-Parameters are passed to these executables in the same manner as non-Docker based installations.  See https://spark.apache.org/docs/latest/submitting-applications.html.
+Parameters are passed to these executables in the same manner as non-Docker based installations.
+
+See https://spark.apache.org/docs/latest/submitting-applications.html.
 
 ``jupyter notebook`` is a general server process that does not implicitly create a SparkContext.
 
@@ -32,7 +34,7 @@ Local Mode
 ----------
 The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
 
-The Docker image must be built and available on the host machine but does not need to be published to https://hub.docker.com.
+The Docker image must be built on the host machine but does not need to be published to https://hub.docker.com.
 
 Cluster Mode
 ------------
