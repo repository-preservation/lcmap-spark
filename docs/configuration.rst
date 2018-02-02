@@ -74,10 +74,52 @@ notebook
 
 .. code-block:: bash
 
+   export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="local[*]"
+
    docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
-              usgseros/lcmap-spark:latest \
+              -e IMAGE=$IMAGE \
+              -e MASTER=$MASTER \
+              $IMAGE \
               jupyter --ip=$HOSTNAME notebook
 
+.. code-block:: python
+
+   import os
+   import pyspark
+
+   
+   def conf():
+       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
+               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
+               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
+               'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
+               'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
+               'spark.mesos.executor.docker.forcePullImage': 'false',
+               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
+               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
+               'spark.python.worker.memory':                 '1g',
+               'spark.executor.cores':                       '1',
+               'spark.cores.max':                            '1000',
+               'spark.executor.memory':                      '4g'}
+
+               
+   def context(conf):
+       return pyspark.SparkContext(master=os.environ['MASTER'],
+                                   appName='lcmap-spark:{}'.format(os.environ['USER']),
+                                   conf=pyspark.SparkConf().setAll([conf]))
+
+                                   
+   def application():
+       sc = None
+       try:
+           sc   = context(conf())
+           rdd  = sc.parallelize(range(1000000))
+           return {'min': rdd.min(), 'max': rdd.max()}
+       finally:
+           sc.stop()
+
+           
 Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
 
 If you wish to pass these values in from the host machine at runtime, consider setting them as environment variables using the ``-e`` Docker flag and then accessing them through ``os.environ`` in your notebook.
@@ -184,10 +226,11 @@ notebook
 .. code-block:: bash
 
    export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
 
    docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
               -e IMAGE=$IMAGE \
-              -e MASTER=$MESOS_MASTER \
+              -e MASTER=$MASTER \
               -e MESOS_PRINCIPAL=$MESOS_PRINCIPAL \
               -e MESOS_SECRET=$MESOS_SECRET \
               -e MESOS_ROLE=$MESOS_ROLE \
@@ -202,9 +245,9 @@ notebook
    
    def conf():
        return {'spark.driver.host':                          os.environ['HOSTNAME'], 
-               'spark.mesos.principal':                      os.environ['MESOS_PRINCIPAL'], 
-               'spark.mesos.secret':                         os.environ['MESOS_SECRET'], 
-               'spark.mesos.role':                           os.environ['MESOS_ROLE'],
+               'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''), 
+               'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''), 
+               'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
                'spark.mesos.executor.docker.image':          os.environ['IMAGE'],
                'spark.mesos.executor.docker.forcePullImage': 'false',
                'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
