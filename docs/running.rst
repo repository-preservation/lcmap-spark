@@ -42,7 +42,9 @@ spark-submit - local mode
 -------------------------
 
 .. code-block:: python
-
+                
+   # save to /home/user/jobs/job.py
+   
    import pyspark
 
    def run():
@@ -71,6 +73,8 @@ spark-submit - cluster mode
 ---------------------------
 
 .. code-block:: bash
+
+   # must be built into image at /home/lcmap/jobs/job.py
 
    import pyspark
 
@@ -104,7 +108,8 @@ notebook - local mode
    export IMAGE="usgseros/lcmap-spark:latest"
    export MASTER="local[*]"
 
-   docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
+   docker run -it --rm --net host -u `id -u` \
+              -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
               -e IMAGE=$IMAGE \
               -e MASTER=$MASTER \
               $IMAGE \
@@ -156,8 +161,13 @@ notebook - cluster mode
 
    export IMAGE="usgseros/lcmap-spark:latest"
    export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
-
-   docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
+   export MESOS_PRINCIPAL="<mesos-principal>"
+   export MESOS_SECRET="<mesos-secret>"
+   export MESOS_ROLE="<mesos-role>"
+   
+   docker run -it --rm --net host -u `id -u` \
+              -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
+              -v /home/user/mesos-keys:/certs \
               -e IMAGE=$IMAGE \
               -e MASTER=$MASTER \
               -e MESOS_PRINCIPAL=$MESOS_PRINCIPAL \

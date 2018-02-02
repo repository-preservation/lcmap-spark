@@ -37,9 +37,20 @@ Volumes may be mounted using the ``-v /path/to/host/dir:/path/to/docker/dir`` fl
               usgseros/lcmap-spark:latest \
               <command>
 
+Network
+-------
+
+Docker has extensive networking capablities.
+
+lcmap-spark's use of these capabilities is minimal.
+
+In order to properly overlay a dynamic Spark cluster on top of Mesos, only ``--net host`` should ever be used.
+
+This eases host system access to Jupyter Notebooks in local or cluster mode as well.
+
 Local Mode
 ----------
-The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
+The only requirement for running lcmap-spark in local mode is the ability to start a Docker container.
 
 The Docker image must be built on the host machine but does not need to be published to https://hub.docker.com.
 
@@ -48,7 +59,7 @@ Cluster Mode
 
 https://spark.apache.org/docs/latest/cluster-overview.html
 
-Cluster mode uses Apache Mesos as a cluster manager for Spark, allowing Spark to run functions in parallel across many physical hosts.
+Cluster mode uses Apache Mesos as a cluster manager, allowing Spark to run functions in parallel across many physical hosts.
 
 Cluster mode requirements are:
 
