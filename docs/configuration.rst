@@ -111,6 +111,7 @@ pyspark
 ~~~~~~~
 
 .. code-block:: bash
+                
    docker run -it --rm --net host -u `id -u` -v /home/user/mesos-keys:/certs
               usgseros/lcmap-spark:latest \
               pyspark --master <mesos://zk://host1:2181,host2:2181,host3:2181/mesos> \
