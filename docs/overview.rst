@@ -1,11 +1,11 @@
-lcmap-spark  - WIP
-==================
+lcmap-spark
+===========
 
 A simple, portable environment for executing science models and performing exploratory analysis at scale.
 
 What is Spark?
 --------------
-`From the website <https://spark.apache.org/>`_, Apache Spark is a fast and general engine for large scale data processing.  It can run on a laptop or on thousands of machines, processes data too big to fit in memory, and moves functions to data rather than data to functions.
+`From the source <https://spark.apache.org/>`_, Apache Spark is a fast and general engine for large scale data processing.  It can run on a laptop or on thousands of machines, processes data too big to fit in memory, and moves functions to data rather than data to functions.
 
 Spark has connectors to many data sources, offers interactive development and is open source.
 
@@ -61,12 +61,11 @@ The fundamental data structure used is a Resilient Distributed Dataset, which is
 
 The `laziness <https://en.wikipedia.org/wiki/Lazy_evaluation>`_ of RDDs is key, as it allows Spark to avoid realizing the full dataset at once.  This means datasets much larger than available physical memory may be operated on.
 
-Running A Spark Job
--------------------
+Ways to Run
+-----------
 Spark jobs may be executed from a Jupyter Notebook, a Spark shell, or from the command line.
 
 * ``spark-submit`` runs Spark jobs from a command line
-* ``spark-shell`` is a Scala shell
 * ``pyspark`` is a Python shell
 * ``notebook`` is a Jupyter Notebook server
 
@@ -82,15 +81,6 @@ See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.or
                --pid=host \
                usgseros/lcmap-spark:latest \
                spark-submit your_spark_job.py
-
-    # Run Scala jobs interactively from the Scala shell
-    docker run -it \
-               --rm \
-               --user=`id -u` \
-               --network=host \
-               --pid=host \
-               usgseros/lcmap-spark:latest \
-               spark-shell
 
     # Run Python jobs interactively from the PySpark shell
     docker run -it \
@@ -131,27 +121,4 @@ There are two modes for lcmap-spark: ``cluster`` and ``local``.
 * ``local`` mode executes Spark applications on the local host system only
 * Switching modes is achieved by setting parameters during SparkContext creation
 
-See `<modes.rst/>`_ for mode configuration.
-
                
-Developing A SEE application
-============================
-Python3 is installed.
-Merlin is installed.
-Conda is installed.
-Jupyter is installed.
-
-Installing Additional System Dependencies
-------------------------------
-* sudo conda install X
-* sudo yum install X
-
-Installing Additional Python Dependencies
-------------------------------
-* sudo conda install X
-* sudo pip install X
-
-Derivative Docker Image
------------------------
-
-``FROM lcmap-spark:<version>``
