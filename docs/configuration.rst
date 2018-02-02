@@ -195,7 +195,7 @@ https://spark.apache.org/docs/latest/running-on-mesos.html
 
 When running on Mesos, there are two modes that determine where the *driver program* runs: client and cluster.
 
-This should not be confused with local and cluster modes for Spark previously discussed, which determine where the *executors* run.
+This shouldn't be confused with Spark's local/cluster modes, which determine where the *executors* run.
 
 lcmap-spark uses client mode only, which means the driver program (SparkContext) will always run on the local host machine.
 
