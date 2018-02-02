@@ -71,6 +71,8 @@ Spark jobs may be executed from a Jupyter Notebook, a Spark shell, or from the c
 
 See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.org for more information.
 
+Full examples with working configurations are in `running.rst <running.rst>`_.
+
 .. code-block:: bash
 
     # Run any job from the command line

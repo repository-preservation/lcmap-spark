@@ -1,5 +1,5 @@
-How To Build lcmap-spark
-========================
+How To Build
+============
 
 .. code-block:: bash
                 
