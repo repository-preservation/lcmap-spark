@@ -92,20 +92,22 @@ Cluster Mode
 
 https://spark.apache.org/docs/latest/cluster-overview.html
 
-Cluster mode uses Apache Mesos as a cluster  manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
+Cluster mode uses Apache Mesos as a cluster manager for Spark, which allows Spark to run functions in parallel across many physical hosts.
 
-In order to run a cluster based instance of lcmap-spark, you must have the ability to run a Docker container locally, and you must have network access to a Mesos Master, ideally over a 10 Gigabit or greater network.  
+Cluster mode requirements are:
 
-Connecting to Mesos
-Requesting Resources
-Running Spark Jobs
-Resource Allocation Lifecycle
-Releasing Resources
+* ability to run lcmap-spark locally
+* network access to Mesos Master(s), ideally over a 10 Gigabit or greater link
+* Mesos username
+* Mesos role
+* Mesos password
+* Mesos certificates
 
-When connecting to Mesos the same local Docker image is automatically downloaded onto the Mesos nodes (from hub.docker.com) and used as the execution environment for application code.  This provides a consistent and reliable way to develop, deploy and run Spark applications and all their necessary dependencies.
+When run in cluster mode, the lcmap-spark image is automatically downloaded onto the Mesos nodes and used to create Docker containers, which create the Spark cluster and execute Spark & application code.
 
-Running lcmap-spark on a standalone cluster or on Yarn have not been tested.
+Host System -> lcmap-spark -> SparkContext (Spark Master) ==> Mesos Master -> Mesos Agents -> Mesos Executors -> lcmap-spark -> Spark Worker -> **Bazinga**  
 
+This provides a reliable way to create a consistent, immutable environment, dynamically, across a cluster of machines.
 
 pyspark
 ~~~~~~~
