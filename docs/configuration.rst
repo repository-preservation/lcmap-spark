@@ -89,7 +89,7 @@ Cluster mode requirements are:
 
 When run in cluster mode, the lcmap-spark image is automatically downloaded onto Mesos nodes and used to create Docker containers, which dynamically create the Spark cluster and execute application code.
 
-.. figure:: imgs/start-spark-worker-on-mesos.png
+.. figure:: imgs/start-spark-workers-on-mesos.png
    :scale: 50 %
    :alt: starting spark workers on mesos
 
