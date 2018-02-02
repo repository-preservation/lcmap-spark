@@ -23,24 +23,27 @@ Example
                --pid=host \
                usgseros/lcmap-spark:latest \
                pyspark
+
+Requirements
+------------
+* local mode
+  * Docker installed locally
+* cluster mode
+  * Docker installed locally
+  * network access to Mesos Master
+  * Mesos username
+  * Mesos role
+  * Mesos password
+  * Mesos certificates
                
 Documentation
 -------------
-* `Starting Out <docs/start.rst/>`_
+
+* `Overview <docs/overview.rst/>`_
+* `Writing Applications <docs/applications.rst/>`_
 * `Configuration <docs/configuration.rst/>`_
-* `Examples <docs/examples.rst/>`_
-
-               
-Building
---------
-
-.. code-block:: bash
-                
-    # Build the image
-    make
-
-    # Push the image to Dockerhub
-    make push
+* `Developing lcmap-spark <docs/developing.rst/>`_
+* `Usage Examples <docs/examples.rst/>`_
 
         
 Versioning
