@@ -24,30 +24,28 @@ Example
                usgseros/lcmap-spark:latest \
                pyspark
 
-Requirements
-------------
-
-* Docker
-* network access to Mesos Master (optional)
-* Mesos username (optional)
-* Mesos role (optional)
-* Mesos password (optional)
-* Mesos certificates (optional)
-               
 Documentation
 -------------
 
 * `Overview <docs/overview.rst/>`_
-* `Writing Applications <docs/applications.rst/>`_
+* `Running <docs/running.rst/>`_
 * `Configuration <docs/configuration.rst/>`_
-* `Developing lcmap-spark <docs/developing.rst/>`_
-* `Usage Examples <docs/examples.rst/>`_
+* `Applications <docs/applications.rst/>`_
+* `Building <docs/building.rst/>`_
 
-        
+Requirements
+------------
+
+* Docker
+* Network access to Mesos Master (optional)
+* Mesos username (optional)
+* Mesos role (optional)
+* Mesos password (optional)
+* Mesos certificates (optional)
+                       
 Versioning
 ----------
 lcmap-spark follows semantic versioning: http://semver.org/
-
 
 License
 -------
