@@ -24,8 +24,8 @@ There are several things to remember:
 
 * Full paths must be specified
 * Set ``-u`` to match the host system user's UID so permissions match
-* volumes are only for local mode
-* cluster mode requires files be built in
+* Volumes are only for local mode
+* Cluster mode requires files be built in
 * Mesos certs only needed on host filesystem
   
 Local Mode
@@ -43,8 +43,9 @@ Cluster mode uses Apache Mesos as a cluster manager for Spark, which allows Spar
 
 Cluster mode requirements are:
 
-* ability to run lcmap-spark locally
-* network access to Mesos Master(s), ideally over a 10 Gigabit or greater link
+* Ability to run lcmap-spark locally
+* Docker image published to https://hub.docker.com
+* Network access to Mesos Master(s), ideally over a 10 Gigabit or greater link
 * Mesos username
 * Mesos role
 * Mesos password
@@ -56,8 +57,6 @@ When run in cluster mode, the lcmap-spark image is automatically downloaded onto
 
 Host System ---> lcmap-spark ---> SparkContext (Spark Master) ---> 
 ... Mesos Master ---> Mesos Executors ---> lcmap-spark ---> Spark Worker ---> **Bazinga**
-
-
 
 This provides a reliable way to create a consistent, immutable environment, dynamically, across a cluster of machines.
 
@@ -71,40 +70,22 @@ lcmap-spark uses client mode only: The driver program (SparkContext) will always
 
 **This shouldn't be confused with Spark's local and cluster modes, which determine where the Spark Workers run.**
 
-Mesos based runtime configuration and instructions.
-
-SSL Certificates for Authentication
+SSL Based Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The following three files must be present in the image ``/certs`` directory.  They can be obtained from
-Mesos admins.
+Three files must be present in the image ``/certs`` directory to enable authentication over SSL.
+
+They may be obtained from Mesos admins.
 
 * mesos.crt
 * mesos.key
 * trustedroot.crt
 
-Mount a volume at runtime as including them in a published image constitutes a security violation.
+These files should never be published in an image, as this constitues a security violation.
+
+Mount them as a volume at runtime instead:
 
 .. code-block:: bash
 
-    docker run <flags> --volume=/home/user/certs:/certs usgseros/lcmap-spark <command>
-
-pyspark
--------
-https://spark.apache.org/docs/latest/rdd-programming-guide.html
-<local mode example>
-<cluster mode example>
-
-spark-submit
-------------
-https://spark.apache.org/docs/latest/submitting-applications.html
-<local mode example>
-<cluster mode example>
-
-notebook
---------
-https://jupyter-notebook.readthedocs.io/en/stable/
-<local mode example>
-<cluster mode example>
-
+    docker run <flags> -v /home/user/certs:/certs usgseros/lcmap-spark <command>
 
 

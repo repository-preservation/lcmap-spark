@@ -42,6 +42,7 @@ Requirements
 * Mesos role (optional)
 * Mesos password (optional)
 * Mesos certificates (optional)
+* Make (optional)
                        
 Versioning
 ----------
