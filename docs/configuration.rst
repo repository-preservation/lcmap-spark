@@ -31,7 +31,11 @@ Volumes may be mounted using the ``-v /path/to/host/dir:/path/to/docker/dir`` fl
 
 .. code-block:: bash
 
-   docker run -u `id -u` -v /path/to/host/dir:/path/to/docker/dir <flags> usgseros/lcmap-spark:latest <command>
+   docker run -u `id -u` \
+              -v /path/to/host/dir:/path/to/docker/dir \
+              <other flags> \
+              usgseros/lcmap-spark:latest \
+              <command>
 
 Local Mode
 ----------
