@@ -183,10 +183,48 @@ notebook
 
 .. code-block:: bash
 
+   export IMAGE="usgseros/lcmap-spark:latest"
+
    docker run -it --rm --net host -u `id -u` -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
-              usgseros/lcmap-spark:latest \
+              -e IMAGE=$IMAGE \
+              -e MASTER=$MESOS_MASTER \
+              -e MESOS_PRINCIPAL=$MESOS_PRINCIPAL \
+              -e MESOS_SECRET=$MESOS_SECRET \
+              -e MESOS_ROLE=$MESOS_ROLE \
+              $IMAGE \
               jupyter --ip=$HOSTNAME notebook
 
+.. code-block:: python
+
+   import os
+   import pyspark
+   
+   def conf():
+       return {'spark.driver.host':                          os.environ['HOSTNAME'], 
+               'spark.mesos.principal':                      os.environ['MESOS_PRINCIPAL'], 
+               'spark.mesos.secret':                         os.environ['MESOS_SECRET'], 
+               'spark.mesos.role':                           os.environ['MESOS_ROLE'],
+               'spark.mesos.executor.docker.image':          'usgseros/lcmap-spark:latest,
+               'spark.mesos.executor.docker.forcePullImage': 'false',
+               'spark.mesos.task.labels':                    'lcmap-spark:{}'.format(os.environ['USER']),                    
+               'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',                                  
+               'spark.python.worker.memory':                 '1g',
+               'spark.executor.cores':                       '1',
+               'spark.cores.max':                            '1000',
+               'spark.executor.memory':                      '4g'}
+       
+   def context(conf):
+       return pyspark.SparkContext(master=os.environ['MASTER'],
+                                   appName='lcmap-spark:{}'.format(os.environ['USER']),
+                                   conf=conf)
+   def application():
+       sc = None
+       try:
+           sc  = context(conf())
+           rdd = sc.parallelize(range(3))
+           assert rdd.sum() == 6
+       finally:
+           sc.stop()
 
 
 Apache Mesos
