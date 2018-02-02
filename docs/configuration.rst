@@ -93,28 +93,24 @@ When run in cluster mode, the lcmap-spark image is automatically downloaded onto
    :scale: 50 %
    :alt: starting spark workers on mesos
 
-   This is the caption of the figure (a simple paragraph).
+   1. lcmap-spark is started on the host and downloaded from https://hub.docker.com
+   2. A SparkContext() is created, which requests resources from the Mesos Master
+   3. The Mesos Master schedules the Mesos job on one or more Mesos Executors
+   4. The Mesos Executors download lcmap-spark and execute a Spark Worker
+   5. The Spark Worker contacts the SparkContext
+   6. A Spark Cluster now exists.
 
-   The legend consists of all elements after the caption.  In this
-   case, the legend consists of this paragraph and the following
-   table:
+.. figure:: imgs/spark-context-workers.png
+   :scale: 50 %
+   :alt: SparkContext and Spark Workers
 
-   +-----------------------+-----------------------+
-   | Symbol                | Meaning               |
-   +=======================+=======================+
-   | .. image:: tent.png   | Campground            |
-   +-----------------------+-----------------------+
-   | .. image:: waves.png  | Lake                  |
-   +-----------------------+-----------------------+
-   | .. image:: peak.png   | Mountain              |
-   +-----------------------+-----------------------+
+   After a Spark cluster is started using Mesos, it behaves as any Spark cluster would if started manually.
 
-<INSERT DIAGRAM OF THIS HERE>
+   The SparkContext maintains it's reservation on resources as long as it exists, keeping the cluster alive.
 
-Host System ---> lcmap-spark ---> SparkContext (Spark Master) ---> 
-... Mesos Master ---> Mesos Executors ---> lcmap-spark ---> Spark Worker ---> **Bazinga**
+   Once ``.stop()`` is called on the SparkContext, it releases it's resource reservation and the cluster is gone.
 
-This provides a reliable way to create a consistent, immutable environment across a cluster of machines.
+Running Spark on Mesos in Docker provides a reliable way to dynamically create a consistent, immutable execution environment across a cluster of machines.
 
 Apache Mesos
 ------------
