@@ -120,7 +120,7 @@ notebook
            sc.stop()
 
            
-Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
+Setting Spark configuration values via the ``--conf`` flag works for ``pyspark``, ``spark-shell`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
 
 If you wish to pass these values in from the host machine at runtime, consider setting them as environment variables using the ``-e`` Docker flag and then accessing them through ``os.environ`` in your notebook.
 
