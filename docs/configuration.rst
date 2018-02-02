@@ -85,6 +85,8 @@ notebook
 
 .. code-block:: python
 
+   """Example Notebook connecting to Spark"""
+   
    import os
    import pyspark
 
@@ -238,6 +240,8 @@ notebook
               jupyter --ip=$HOSTNAME notebook
 
 .. code-block:: python
+
+   """Example Notebook connecting to Spark"""
 
    import os
    import pyspark
