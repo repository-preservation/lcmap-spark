@@ -35,6 +35,7 @@ spark-shell
 
 spark-submit
 ~~~~~~~~~~~~
+https://spark.apache.org/docs/latest/submitting-applications.html
 
 .. code-block:: python
 
@@ -67,8 +68,6 @@ Job modules must be made accessible inside the Docker image at runtime, so in th
 
 This works well for development and testing in ``local`` mode, but in ``cluster`` mode the job files must be
 built into the image.
-
-Learn more at https://spark.apache.org/docs/latest/submitting-applications.html.
                        
 notebook
 ~~~~~~~~
@@ -192,7 +191,7 @@ notebook
 
 Apache Mesos
 ------------
-1The official Spark on Mesos documentation is `here <https://spark.apache.org/docs/latest/running-on-mesos.html>`_
+https://spark.apache.org/docs/latest/running-on-mesos.html
 
 When running on Mesos, Spark also provides two modes: (1) Client Mode (2) Cluster Mode.
 
