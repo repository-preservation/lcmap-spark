@@ -27,7 +27,11 @@ There are several cases where host files are needed on the Docker filesystem.
 Volumes may be mounted using the ``-v /path/to/host/dir:/path/to/docker/dir`` flag.
 
 * Full paths must be specified
-* Set ``docker run -u <UID>`` to the host system user's UID so permissions match
+* Set ``-u`` to the host system user's UID so permissions match
+
+.. code-block:: bash
+
+   docker run -u `id -u` -v /path/to/host/dir:/path/to/docker/dir <flags> usgseros/lcmap-spark:latest <command>
 
 Local Mode
 ----------
