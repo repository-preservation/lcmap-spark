@@ -28,10 +28,10 @@ Documentation
 -------------
 
 * `Overview <docs/overview.rst/>`_
-* `Running <docs/running.rst/>`_
+* `Running lcmap-spark <docs/running.rst/>`_
 * `Configuration <docs/configuration.rst/>`_
-* `Applications <docs/applications.rst/>`_
-* `Building <docs/building.rst/>`_
+* `Developing Applications <docs/applications.rst/>`_
+* `How To Build <docs/building.rst/>`_
 
 Requirements
 ------------
