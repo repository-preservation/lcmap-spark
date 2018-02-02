@@ -6,10 +6,13 @@ pyspark - local mode
 --------------------
 
 .. code-block:: bash
+
+   export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="local[*]"
    
    docker run -it --rm --net host -u `id -u` \
-              usgseros/lcmap-spark:latest \
-              pyspark --master local[*] \
+              $IMAGE \
+              pyspark --master $MASTER \
                       --total-executor-cores 4 \
                       --driver-memory 1024m \
                       --executor-memory 1024m \
@@ -21,22 +24,29 @@ pyspark - cluster mode
 ----------------------
 
 .. code-block:: bash
-                
+
+   export IMAGE="usgseros/lcmap-spark:latest"
+   export MESOS_PRINCIPAL=<MESOS_PRINCIPAL>
+   export MESOS_SECRET=<MESOS_SECRET>
+   export MESOS_ROLE=<MESOS_ROLE>
+   
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/mesos-keys:/certs \
-              usgseros/lcmap-spark:latest \
+              $IMAGE \
               pyspark --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
                       --total-executor-cores 4 \
                       --driver-memory 1024m \
                       --executor-memory 1024m \
                       --conf spark.app.name=$USER:pyspark \
                       --conf spark.driver.host=$HOSTNAME \
-                      --conf spark.mesos.principal=<MESOS_PRINCIPAL> \
-                      --conf spark.mesos.secret=<MESOS_SECRET> \
-                      --conf spark.mesos.role=<MESOS_ROLE> \
-                      --conf spark.mesos.executor.docker.image=usgseros/lcmap-spark:latest \
-                      --conf spark.mesos.executor.docker.forcePullImage=false \
-                      --conf spark.mesos.task.labels=$USER:demo
+                      --conf spark.mesos.principal=$MESOS_PRINCIPAL \
+                      --conf spark.mesos.secret=$MESOS_SECRET \
+                      --conf spark.mesos.role=$MESOS_ROLE \
+                      --conf spark.mesos.executor.docker.image=$IMAGE \
+                      --conf spark.mesos.executor.docker.forcePullImage='false' \
+                      --conf spark.mesos.task.labels=$USER:demo \
+                      --conf spark.serializer='org.apache.spark.serializer.KryoSerializer' \
+                      --conf spark.python.worker.memory='1g'
 
 
 spark-submit - local mode
@@ -59,10 +69,13 @@ spark-submit - local mode
 
 .. code-block:: bash
 
+   export MASTER="local[*]"
+   export IMAGE="usgseros/lcmap-spark:latest"
+
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/jobs:/home/lcmap/jobs \
-              usgseros/lcmap-spark:latest \
-              spark-submit --master local[*] \
+              $IMAGE \
+              spark-submit --master $MASTER \
                            --total-executor-cores 4 \
                            --driver-memory 1024m \
                            --executor-memory 1024m \
@@ -91,15 +104,29 @@ spark-submit - cluster mode
 
 .. code-block:: bash
 
+   export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
+   export MESOS_PRINCIPAL=<MESOS_PRINCIPAL>
+   export MESOS_SECRET=<MESOS_SECRET>
+   export MESOS_ROLE=<MESOS_ROLE>
+
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/mesos-keys:/certs \
-              usgseros/lcmap-spark:latest \
-              spark-submit --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
+              $IMAGE \
+              spark-submit --master $MASTER \
                            --total-executor-cores 4 \
                            --driver-memory 1024m \
                            --executor-memory 1024m \
-                           --conf spark.app.name=$USER\
+                           --conf spark.app.name=$USER \
                            --conf spark.driver.host=$HOSTNAME \
+                           --conf spark.mesos.principal=$MESOS_PRINCIPAL \
+                           --conf spark.mesos.secret=$MESOS_SECRET \
+                           --conf spark.mesos.role=$MESOS_ROLE \
+                           --conf spark.mesos.executor.docker.image=$IMAGE \
+                           --conf spark.mesos.executor.docker.forcePullImage='false', \
+                           --conf spark.mesos.task.labels='lcmap-spark:{}'.format(os.environ['USER']), \
+                           --conf spark.serializer='org.apache.spark.serializer.KryoSerializer', \
+                           --conf spark.python.worker.memory='1g', \
                            jobs/job.py
 
                            
