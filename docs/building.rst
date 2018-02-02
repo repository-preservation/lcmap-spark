@@ -1,8 +1,5 @@
-Developing lcmap-spark
-======================
-
-Building
---------
+How To Build lcmap-spark
+========================
 
 .. code-block:: bash
                 

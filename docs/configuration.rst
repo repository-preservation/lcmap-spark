@@ -5,7 +5,7 @@ Parameters
 ----------
 lcmap-spark configuration parameters are passed differently for ``pyspark``, ``spark-submit`` or ``notebook``.
 
-``pyspark`` and ``spark-submit`` are executables inside lcmap-spark that implicitly create a SparkContext.  Each executable has its own set of parameters.
+``pyspark`` and ``spark-submit`` are executables inside lcmap-spark that implicitly create a SparkContext.
 
 Parameters are passed to these executables in the same manner as non-Docker based installations.  See https://spark.apache.org/docs/latest/submitting-applications.html.
 
@@ -21,15 +21,18 @@ Volumes
 This is accomplished by mounting Docker volumes using the ``-v /path/to/host/dir:/path/to/docker/dir`` flag.
 
 There are several things to remember:
+
 * Full paths must be specified
 * Set ``-u`` to match the host system user's UID so permissions match
 * volumes are only for local mode
 * cluster mode requires files be built in
-  * mesos certs only needed on host filesystem
+* Mesos certs only needed on host filesystem
   
 Local Mode
 ----------
-The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.  The Docker image must be built and available on the host machine but does not need to be published to https://hub.docker.com.
+The only requirement for running a local instance of lcmap-spark is the ability to start a Docker container.
+
+The Docker image must be built and available on the host machine but does not need to be published to https://hub.docker.com.
 
 Cluster Mode
 ------------
