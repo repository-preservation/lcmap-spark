@@ -19,20 +19,6 @@ pyspark
                       --conf spark.app.name=$USER \
                       --conf spark.driver.host=$HOSTNAME
 
-spark-shell
-~~~~~~~~~~~
-
-.. code-block:: bash
-   
-   docker run -it --rm --net host -u `id -u` \
-              usgseros/lcmap-spark:latest \
-              spark-shell --master local[*] \
-                          --total-executor-cores 4 \
-                          --driver-memory 1024m \
-                          --executor-memory 1024m \
-                          --conf spark.app.name=$USER \
-                          --conf spark.driver.host=$HOSTNAME
-
 spark-submit
 ~~~~~~~~~~~~
 https://spark.apache.org/docs/latest/submitting-applications.html
@@ -122,7 +108,7 @@ notebook
            sc.stop()
 
            
-Setting Spark configuration values via the ``--conf`` flag works for ``pyspark``, ``spark-shell`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
+Setting Spark configuration values via the ``--conf`` flag works for ``pyspark`` and ``spark-submit``.  When running ``notebook`` however, these values must be specified when creating the SparkContext through code.
 
 If you wish to pass these values in from the host machine at runtime, consider setting them as environment variables using the ``-e`` Docker flag and then accessing them through ``os.environ`` in your notebook.
 
@@ -176,23 +162,7 @@ pyspark
                       --conf spark.mesos.executor.docker.image=usgseros/lcmap-spark:latest \
                       --conf spark.mesos.executor.docker.forcePullImage=false \
                       --conf spark.mesos.task.labels=$USER:demo
-
-spark-shell
-~~~~~~~~~~~
-
-.. code-block:: bash
-
-   
-   docker run -it --rm --net host -u `id -u` \
-              usgseros/lcmap-spark:latest \
-              spark-shell --master local[*] \
-                          --total-executor-cores 4 \
-                          --driver-memory 1024m \
-                          --executor-memory 1024m \
-                          --conf spark.app.name=$USER \
-                          --conf spark.driver.host=$HOSTNAME
-
-
+                      
 spark-submit
 ~~~~~~~~~~~~
 
@@ -213,7 +183,7 @@ spark-submit
 
    docker run -it --rm --net host -u `id -u` -v /home/user/jobs:/home/lcmap/jobs \
               usgseros/lcmap-spark:latest \
-              spark-submit --master local[*] \
+              spark-submit --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
                            --total-executor-cores 4 \
                            --driver-memory 1024m \
                            --executor-memory 1024m \
