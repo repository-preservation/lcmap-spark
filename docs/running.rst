@@ -22,7 +22,8 @@ pyspark - cluster mode
 
 .. code-block:: bash
                 
-   docker run -it --rm --net host -u `id -u` -v /home/user/mesos-keys:/certs
+   docker run -it --rm --net host -u `id -u` \
+              -v /home/user/mesos-keys:/certs \
               usgseros/lcmap-spark:latest \
               pyspark --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
                       --total-executor-cores 4 \
@@ -43,7 +44,7 @@ spark-submit - local mode
 
 .. code-block:: python
                 
-   # save to /home/user/jobs/job.py
+   # save to /home/user/jobs/job.py on host filesystem
    
    import pyspark
 
@@ -89,7 +90,8 @@ spark-submit - cluster mode
 
 .. code-block:: bash
 
-   docker run -it --rm --net host -u `id -u` -v /home/user/jobs:/home/lcmap/jobs \
+   docker run -it --rm --net host -u `id -u` \
+              -v /home/user/jobs:/home/lcmap/jobs \
               usgseros/lcmap-spark:latest \
               spark-submit --master mesos://zk://host1:2181,host2:2181,host3:2181/mesos \
                            --total-executor-cores 4 \
