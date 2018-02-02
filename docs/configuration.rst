@@ -224,9 +224,9 @@ notebook
    def application():
        sc = None
        try:
-           sc  = context(conf())
-           rdd = sc.parallelize(range(3))
-           return rdd.sum() == 6
+           sc   = context(conf())
+           rdd  = sc.parallelize(range(1000000))
+           return {'min': rdd.min(), 'max': rdd.max()}
        finally:
            sc.stop()
 
