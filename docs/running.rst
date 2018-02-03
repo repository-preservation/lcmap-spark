@@ -140,7 +140,7 @@ notebook - local mode
    export MASTER="local[*]"
 
    docker run -it --rm --net host -u `id -u` \
-              -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
+              -v /home/user/notebook:/home/lcmap/notebook \
               -e MASTER=$MASTER \
               $IMAGE \
               jupyter --ip=$HOSTNAME notebook
@@ -197,7 +197,7 @@ notebook - cluster mode
    export MESOS_ROLE="<mesos-role>"
    
    docker run -it --rm --net host -u `id -u` \
-              -v /home/user/notebook/demo:/home/lcmap/notebook/demo \
+              -v /home/user/notebook:/home/lcmap/notebook \
               -v /home/user/mesos-keys:/certs \
               -e IMAGE=$IMAGE \
               -e MASTER=$MASTER \
