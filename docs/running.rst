@@ -70,8 +70,8 @@ spark-submit - local mode
 
 .. code-block:: bash
 
-   export MASTER="local[*]"
    export IMAGE="usgseros/lcmap-spark:latest"
+   export MASTER="local[*]"
 
    docker run -it --rm --net host -u `id -u` \
               -v /home/user/jobs:/home/lcmap/jobs \
