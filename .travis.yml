@@ -13,7 +13,7 @@ env:
   - COMMIT=${TRAVIS_COMMIT::8}
 
 after_success:
-  - ./bin/build
+  - bin/build
 
 notifications:
   slack:
