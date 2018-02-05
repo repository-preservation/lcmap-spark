@@ -1,4 +1,4 @@
-language: java
+language: python
 
 jdk:
 - openjdk8
