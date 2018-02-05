@@ -60,7 +60,7 @@ RUN cd /opt && tar -zxf spark.tgz && rm -f spark.tgz &&  ln -s spark-* spark && 
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /root/mc.sh
 RUN bash /root/mc.sh -u -b -p /usr/local
 RUN conda install python=3.6 pip jupyter numpy --yes
-RUN pip install lcmap-merlin==2.0rc1
+RUN pip install lcmap-merlin==2.0rc2
 RUN mvn -f /root/pom.xml dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
 RUN yum erase -y maven gcc bzip2
 RUN yum clean all
