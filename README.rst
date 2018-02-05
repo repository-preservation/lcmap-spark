@@ -31,7 +31,7 @@ Documentation
 * `Running lcmap-spark <docs/running.rst/>`_
 * `Configuration <docs/configuration.rst/>`_
 * `Developing Applications <docs/applications.rst/>`_
-* `How To Build <docs/building.rst/>`_
+* `Hacking lcmap-spark <docs/developing.rst/>`_
 
 Requirements
 ------------

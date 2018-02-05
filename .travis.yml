@@ -1,0 +1,19 @@
+jdk:
+- openjdk8
+
+services:
+  - docker
+
+sudo: required
+
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+
+after_success:
+  - ./bin/build
+
+notifications:
+  slack:
+    rooms:
+      - lcmap:UTqlh9PfPVomfpli10WKyZoh#cicd
