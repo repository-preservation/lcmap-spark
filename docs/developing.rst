@@ -1,9 +1,20 @@
 Developing lcmap-spark
 ======================
 
+Building
+--------
+
+.. code-block:: bash
+     
+    # Build the image
+    make
+
+    # Push to dockerhub
+    make push
+
 Developing
 ----------
-* Develop on the develop branch
+* Commit and push to develop branch
 * Set version to x.x-SNAPSHOT
 
 Releasing
@@ -11,16 +22,5 @@ Releasing
 * Remove -SNAPSHOT from version
 * Merge develop into master on github
 * Tag master with version number
-* Perform github release
-  
-How To Build
-------------
-
-.. code-block:: bash
-     
-    # Build the image
-    make
-
-    # Push image to dockerhub
-    make push
+* `Create a github release.  Add release notes <https://help.github.com/articles/creating-releases/>`_
 
