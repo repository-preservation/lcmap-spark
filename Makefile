@@ -1,8 +1,7 @@
 .DEFAULT_GOAL := build
-BRANCH:=`git rev-parse --abbrev-ref HEAD | tr / -`
 VERSION:=`cat version.txt`
 IMAGE:=usgseros/lcmap-spark
-TAG:=$BRANCH-$VERSION
+TAG:=$(VERSION)
 
 build:
 	docker build -t $(IMAGE):$(TAG) -t $(IMAGE):latest --rm=true --compress $(PWD)
