@@ -1,19 +1,13 @@
 .DEFAULT_GOAL := build
-
-download-spark:
-	mkdir tmp; wget -O tmp/spark-2.1.0-bin-hadoop2.7.tgz http://d3kbcqa49mib13.cloudfront.net/spark-2.1.0-bin-hadoop2.7.tgz
-
-unpack-spark: download-spark
-	cd tmp; gunzip *gz; tar -xvf *tar;
-
-init: download-spark unpack-spark
+BRANCH:=`git rev-parse --abbrev-ref HEAD | tr / -`
+VERSION:=`cat version.txt`
+IMAGE:=usgseros/lcmap-spark
+TAG:=$BRANCH-$VERSION
 
 build:
-	docker build -t usgseros/mesos-spark --rm=true --compress .
-	docker tag usgseros/mesos-spark usgseros/mesos-spark:latest
-	docker tag usgseros/mesos-spark usgseros/mesos-spark:1.1.1-2.1.0
+	docker build -t $(IMAGE):$(TAG) -t $(IMAGE):latest --rm=true --compress $(PWD)
 
 push:
-	docker login; docker push usgseros/mesos-spark
-
-all: init build push
+	docker login
+	docker push $(IMAGE):$(TAG)
+	docker push $(IMAGE):latest
