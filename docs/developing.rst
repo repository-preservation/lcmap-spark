@@ -1,6 +1,12 @@
 Developing lcmap-spark
 ======================
 
+Developing
+----------
+
+* Perform development on the develop branch
+* Set version to x.x-SNAPSHOT.
+
 Building
 --------
 
@@ -12,8 +18,10 @@ Building
     # Push to dockerhub
     make push
 
-* Perform development on the develop branch and set version to x.x-SNAPSHOT.
-* Release to master.  Remove -SNAPSHOT from version.
+Releasing
+---------
+* Release to master.
+* Remove -SNAPSHOT from version.
 * Tag master with version.
 * Perform github release.
 
