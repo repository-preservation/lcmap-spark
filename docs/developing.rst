@@ -12,15 +12,10 @@ Building
     # Push to dockerhub
     make push
 
-Developing
-----------
-* Commit and push to develop branch
-* Set version to x.x-SNAPSHOT
+* Perform development on the develop branch and set version to x.x-SNAPSHOT.
+* Release to master.  Remove -SNAPSHOT from version.
+* Tag master with version.
+* Perform github release.
 
-Releasing
----------
-* Remove -SNAPSHOT from version
-* Merge develop into master on github
-* Tag master with version number
-* `Create a github release.  Add release notes <https://help.github.com/articles/creating-releases/>`_
+See https://help.github.com/articles/creating-releases.
 
