@@ -1,20 +1,26 @@
 Developing lcmap-spark
 ======================
 
-* lcmap-spark development should occur on topic branches
-* Integration: topic branch should be merged to develop on github
-* Releases: merge develop into master on github
-* Update version.txt between releases
- 
+Developing
+----------
+* Develop on the develop branch
+* Set version to x.x-SNAPSHOT
 
+Releasing
+---------
+* Remove -SNAPSHOT from version
+* Merge develop into master on github
+* Tag master with version number
+* Perform github release
+  
 How To Build
 ------------
 
 .. code-block:: bash
      
-    ./build.sh
+    # Build the image
+    make
 
-On topic branches, this will build a docker image tagged with <branch>-<version>, which may then
-be run locally.
+    # Push image to dockerhub
+    make push
 
-If build.sh is run on develop or master, a docker image will be built and tagged with <branch>-<version> and <commit> with the git commit id, then both tags will automatically be pushed to https://hub.docker.com.
