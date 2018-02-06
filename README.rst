@@ -3,8 +3,8 @@ lcmap-spark
 ============
 LCMAP SEE Spark base image.
 
-On Docker
----------
+On DockerHub
+------------
 
 https://hub.docker.com/r/usgseros/lcmap-spark/
 
