@@ -45,7 +45,7 @@ RUN yum install -y sudo && \
     chmod 0440 /etc/sudoers.d/$USER
 
 COPY pom.xml /root
-COPY notebook $HOME/notebook
+RUN mkdir -p $HOME/notebook
 
 RUN yum update  -y 
 RUN yum install -y java-1.8.0-openjdk-devel.x86_64 \
