@@ -5,14 +5,14 @@ sudo: required
 services:
   - docker
 
-script: make build && make tag
+script: make debug && make build && make tag
 
 deploy:
   - provider: script
-    script: make push
+    script: make debug && make push
     on:
       all_branches: true
-
+      
 notifications:
   slack:
     rooms:
