@@ -10,4 +10,5 @@ script: make build && make tag
 deploy:
   - provider: script
     script: make push
-  
+    on:
+      all_branches: true
