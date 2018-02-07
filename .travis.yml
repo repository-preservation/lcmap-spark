@@ -1,5 +1,10 @@
 language: c
 
+sudo: required
+
+services:
+  - docker
+
 script: make build && make tag
 
 deploy:
