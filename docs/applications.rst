@@ -9,14 +9,14 @@ Once the new application is ready to run on the SEE, the derivative Docker image
 .. code-block:: make
 
     .DEFAULT_GOAL := build
-    VERSION    := `cat version.txt`
-    IMAGE      := <YOURACCOUNT/YOUR-IMAGE-NAME>
-    BRANCH     := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD | tr / -`)
-    BUILD_TAG  := $(IMAGE):build
-    TAG        := $(shell if [ "$(BRANCH)" = "master" ];\
-                             then echo "$(IMAGE):$(VERSION)";\
-                             else echo "$(IMAGE):$(VERSION)-$(BRANCH)";\
-                          fi)
+    VERSION       := `cat version.txt`
+    IMAGE         := <YOURACCOUNT/YOUR-IMAGE-NAME>
+    BRANCH        := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD | tr / -`)
+    BUILD_TAG     := $(IMAGE):build
+    TAG           := $(shell if [ "$(BRANCH)" = "master" ];\
+                                then echo "$(IMAGE):$(VERSION)";\
+                                else echo "$(IMAGE):$(VERSION)-$(BRANCH)";\
+                             fi)
 
     build:
 	    @docker build -t $(BUILD_TAG) --rm=true --compress $(PWD)
@@ -42,7 +42,7 @@ Once the new application is ready to run on the SEE, the derivative Docker image
 
 Keep in mind that Dockerhub is a public resource and all images published there are public by default.
 
-Do not include any sensitive information in your image such as usernames, passwords, URLs, machine names, IP addresses or SSH keys as doing so constitues a security violation and will result in the gnashing of teeth.
+Do not include any sensitive information in your image such as usernames, passwords, URLs, machine names, IP addresses or SSH keys as doing so is a security violation and will induce gnashing of teeth.
 
 If your application requires sensitive data it can be supplied at runtime through Docker environment variables using ``-e`` or ``--env``.  An ``--env-file`` may also be used locally.
 
