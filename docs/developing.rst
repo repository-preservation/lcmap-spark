@@ -3,25 +3,19 @@ Developing lcmap-spark
 
 Developing
 ----------
-
-* Perform development on the develop branch
-* Set version to x.x-SNAPSHOT.
-
+* Perform development on a topic branch or the develop branch.
+* Set the version in version.txt to x.x.  Follow semantic versioning. 
+  
 Building
 --------
-
-.. code-block:: bash
-     
-    # Build the image
-    make
-
-    # Push to dockerhub
-    make push
+* Local builds may be performed with `make build`.  This will create: `usgseros/lcmap-spark:build`.
+* Travis-CI will build and push `usgseros/lcmap-spark:VERSION-BRANCH` to Dockerhub for branch commits.
+* Travis-CI will build and push `usgseros/lcmap-spark:VERSION` to Dockerhub for commits to `master`.
+* See `Makefile` for details.
 
 Releasing
 ---------
-* Release to master.
-* Remove -SNAPSHOT from version.
+* Merge develop to master.
 * Tag master with version.
 * Perform github release.
 
