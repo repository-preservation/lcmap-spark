@@ -67,7 +67,7 @@ Spark jobs may be executed from a Jupyter Notebook, a Spark shell, or from the c
 
 * ``spark-submit`` runs Spark jobs from a command line
 * ``pyspark`` is a Python shell
-* ``notebook`` is a Jupyter Notebook server
+* ``jupyter notebook`` is a Jupyter Notebook server
 
 See https://spark.apache.org/docs/latest/quick-start.html and https://jupyter.org for more information.
 
@@ -79,7 +79,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
     docker run -it \
                --rm \
                --user=`id -u` \
-               --network=host \
+               --net=host \
                --pid=host \
                usgseros/lcmap-spark:latest \
                spark-submit your_spark_job.py
@@ -88,7 +88,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
     docker run -it \
                --rm \
                --user=`id -u` \
-               --network=host \
+               --net=host \
                --pid=host \
                usgseros/lcmap-spark:latest \
                pyspark
@@ -97,7 +97,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
     docker run -it \
                --rm \
                --user=`id -u` \
-               --network=host \
+               --net=host \
                --pid=host \
                --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
                usgseros/lcmap-spark:latest \

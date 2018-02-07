@@ -3,7 +3,7 @@ Configuration
 
 Parameters
 ----------
-lcmap-spark configuration parameters are passed differently for ``pyspark``, ``spark-submit`` or ``notebook``.
+lcmap-spark configuration parameters are passed differently for ``pyspark``, ``spark-submit`` or ``jupyter notebook``.
 
 ``pyspark`` and ``spark-submit`` are executables inside lcmap-spark that implicitly create a SparkContext.
 

@@ -1,6 +1,7 @@
 Examples
 ========
 
+For a full explantion of ``docker run`` options, refer to: https://docs.docker.com/engine/reference/commandline/run/.
 
 pyspark - local mode
 --------------------
