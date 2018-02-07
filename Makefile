@@ -5,8 +5,8 @@ BRANCH     := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD | tr / -`)
 BUILD_TAG  := $(IMAGE):$(VERSION)-$(BRANCH)-build
 TAG        := $(shell if [ "$(BRANCH)" = "master" ];\
                          then echo "$(IMAGE):$(VERSION)";\
-                         else echo "$(IMAGE):$(VERSION)-$(BRANCH)";\
-                      fi | tr / -) 
+                         else echo "$(IMAGE):$(VERSION)-$(BRANCH)" | tr / -;\
+                      fi) 
 
 
 build:
