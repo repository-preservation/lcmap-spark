@@ -57,6 +57,8 @@ What's already installed?
 * cytoolz
 * lcmap-merlin
 
+For a full view of what's available in the lcmap-spark base image, see the `Dockerfile <../Dockerfile>`_.
+  
 Installing Additional System Dependencies
 ------------------------------
 * ``sudo conda install X``
@@ -70,7 +72,5 @@ Installing Additional Python Dependencies
 Derivative Docker Image
 -----------------------
 All SEE application Dockerfiles should begin with: ``FROM lcmap-spark:<version>``, such as ``FROM lcmap-spark:1.0``.  
-
-For a full view of what's available in the lcmap-spark base image, see the `Dockerfile <../Dockerfile>`_.
 
 For a list of available lcmap-spark images, see https://hub.docker.com/r/usgseros/lcmap-spark/tags/.
