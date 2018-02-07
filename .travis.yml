@@ -1,0 +1,19 @@
+language: c
+
+sudo: required
+
+services:
+  - docker
+
+script: make debug && make build && make tag
+
+deploy:
+  - provider: script
+    script: make debug && make push
+    on:
+      all_branches: true
+      
+notifications:
+  slack:
+    rooms:
+      - lcmap:UTqlh9PfPVomfpli10WKyZoh#cicd
