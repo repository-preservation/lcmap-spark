@@ -12,6 +12,7 @@ deploy:
     script: make debug && make push
     on:
       all_branches: true
+      tags: false
       
 notifications:
   slack:
