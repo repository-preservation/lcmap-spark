@@ -2,11 +2,11 @@
 VERSION    := `cat version.txt`
 IMAGE      := usgseros/lcmap-spark
 BRANCH     := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD | tr / -`)
-BUILD_TAG  := $(IMAGE):build
+BUILD_TAG  := $(IMAGE):$(VERSION)-$(BRANCH)-build
 TAG        := $(shell if [ "$(BRANCH)" = "master" ];\
                          then echo "$(IMAGE):$(VERSION)";\
                          else echo "$(IMAGE):$(VERSION)-$(BRANCH)";\
-                      fi)
+                      fi | tr / -) 
 
 
 build:
