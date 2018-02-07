@@ -70,6 +70,8 @@ The only requirement for running lcmap-spark in local mode is the ability to sta
 
 The Docker image must be built on the host machine but does not need to be published to https://hub.docker.com.
 
+If you built lcmap-spark using ``make build`` then the resulting Dockerfile is: ``usgseros/lcmap-spark:build``.
+
 Cluster Mode
 ------------
 
