@@ -1,4 +1,5 @@
-![Build Status](https://travis-ci.org/USGS-EROS/lcmap-spark.svg?branch=develop)
+.. image:: https://travis-ci.org/USGS-EROS/lcmap-spark.svg?branch=develop
+    :target: https://travis-ci.org/USGS-EROS/lcmap-spark
 
 ============
 lcmap-spark
