@@ -49,7 +49,8 @@ If your application requires sensitive data it can be supplied at runtime throug
 
 What's already installed?
 -------------------------
-* Python3 
+* Python3
+* Pyspark
 * Conda
 * Jupyter
 * numpy
