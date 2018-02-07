@@ -27,9 +27,9 @@ Example
     docker run -it \
                --rm \
                --user=`id -u` \
-               --network=host \
+               --net=host \
                --pid=host \
-               usgseros/lcmap-spark:latest \
+               usgseros/lcmap-spark:1.0 \
                pyspark
 
 Documentation

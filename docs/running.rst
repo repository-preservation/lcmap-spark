@@ -8,7 +8,7 @@ pyspark - local mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="local[*]"
    
    docker run -it --rm --net host -u `id -u` \
@@ -26,7 +26,7 @@ pyspark - cluster mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos" \
    export MESOS_PRINCIPAL=<MESOS_PRINCIPAL>
    export MESOS_SECRET=<MESOS_SECRET>
@@ -71,7 +71,7 @@ spark-submit - local mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="local[*]"
 
    docker run -it --rm --net host -u `id -u` \
@@ -106,7 +106,7 @@ spark-submit - cluster mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
    export MESOS_PRINCIPAL=<MESOS_PRINCIPAL>
    export MESOS_SECRET=<MESOS_SECRET>
@@ -137,7 +137,7 @@ notebook - local mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="local[*]"
 
    docker run -it --rm --net host -u `id -u` \
@@ -191,7 +191,7 @@ notebook - cluster mode
 
 .. code-block:: bash
 
-   export IMAGE="usgseros/lcmap-spark:latest"
+   export IMAGE="usgseros/lcmap-spark:1.0"
    export MASTER="mesos://zk://host1:2181,host2:2181,host3:2181/mesos"
    export MESOS_PRINCIPAL="<mesos-principal>"
    export MESOS_SECRET="<mesos-secret>"

@@ -81,7 +81,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
                --user=`id -u` \
                --net=host \
                --pid=host \
-               usgseros/lcmap-spark:latest \
+               usgseros/lcmap-spark:1.0 \
                spark-submit your_spark_job.py
 
     # Run Python jobs interactively from the PySpark shell
@@ -90,7 +90,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
                --user=`id -u` \
                --net=host \
                --pid=host \
-               usgseros/lcmap-spark:latest \
+               usgseros/lcmap-spark:1.0 \
                pyspark
 
     # Run any job interactively from the Jupyter Notebook server
@@ -100,7 +100,7 @@ Full examples with working configurations are in `running.rst <running.rst>`_.
                --net=host \
                --pid=host \
                --volume=/path/to/your/notebooks/:/home/lcmap/notebook/yours \
-               usgseros/lcmap-spark:latest \
+               usgseros/lcmap-spark:1.0 \
                jupyter --ip=$HOSTNAME notebook
 
                

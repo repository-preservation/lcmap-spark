@@ -1,4 +1,4 @@
-Configuration
+[Configuration
 =============
 
 Parameters
@@ -34,7 +34,7 @@ Volumes may be mounted using the ``-v /path/to/host/dir:/path/to/docker/dir`` fl
    docker run -u `id -u` \
               -v /path/to/host/dir:/path/to/docker/dir \
               <other flags> \
-              usgseros/lcmap-spark:latest \
+              usgseros/lcmap-spark:1.0 \
               <command>
 
 Network
@@ -60,7 +60,7 @@ Mount a volume from the host filesystem to this location when running the notebo
    docker run -u `id -u` \
               -v /your/notebooks:/home/lcmap/notebook \
               <other flags>
-              usgseros/lcmap-spark:latest \
+              usgseros/lcmap-spark:1.0 \
               jupyter --ip=$HOSTNAME notebook
 
 
