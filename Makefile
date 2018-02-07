@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build
 VERSION    := `cat version.txt`
 IMAGE      := usgseros/lcmap-spark
-BRANCH     := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD | tr / -`)
+BRANCH     := $(or `echo $(TRAVIS_BRANCH) | tr / -`,`git rev-parse --abbrev-ref HEAD | tr / -`)
 BUILD_TAG  := $(IMAGE):$(VERSION)-$(BRANCH)-build
 TAG        := $(shell if [ "$(BRANCH)" = "master" ];\
                          then echo "$(IMAGE):$(VERSION)";\
