@@ -8,10 +8,10 @@ Developing
   
 Building
 --------
-* Local builds may be performed with `make build`.  This will create: `usgseros/lcmap-spark:build`.
-* Travis-CI will build and push `usgseros/lcmap-spark:VERSION-BRANCH` to Dockerhub for branch commits.
-* Travis-CI will build and push `usgseros/lcmap-spark:VERSION` to Dockerhub for commits to `master`.
-* See `Makefile` for details.
+* Local builds may be performed with ``make build``.  This will create: ``usgseros/lcmap-spark:build``.
+* Travis-CI will build and push ``usgseros/lcmap-spark:VERSION-BRANCH`` to Dockerhub for branch commits.
+* Travis-CI will build and push ``usgseros/lcmap-spark:VERSION`` to Dockerhub for commits to ``master``.
+* See ``Makefile`` for details.
 
 Releasing
 ---------
