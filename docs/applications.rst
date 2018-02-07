@@ -58,13 +58,13 @@ What's already installed?
 
 Installing Additional System Dependencies
 ------------------------------
-* sudo conda install X
-* sudo yum install X
+* ``sudo conda install X``
+* ``sudo yum install X``
 
 Installing Additional Python Dependencies
 ------------------------------
-* sudo conda install X
-* sudo pip install X
+* ``sudo conda install X``
+* ``sudo pip install X``
 
 Derivative Docker Image
 -----------------------
