@@ -1,6 +1,6 @@
 Developing A SEE application
 ============================
-SEE applications are created by extending the ``lcmap-spark`` Docker image.  Additional dependencies may be added to the derivative Docker images, and code may be developed using ``pyspark`` and the Jupyter Notebook server.  See the `examples <examples.rst>`_.
+SEE applications are created by extending the ``lcmap-spark`` Docker image.  Additional dependencies may be added to the derivative Docker images, and code may be developed using ``pyspark`` and the Jupyter Notebook server.  See the `examples <running.rst>`_.
 
 Once the new application is ready to run on the SEE, the derivative Docker image must be published to https://hub.docker.com.  A user account is required.
 
