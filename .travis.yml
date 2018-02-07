@@ -12,3 +12,8 @@ deploy:
     script: make push
     on:
       all_branches: true
+
+notifications:
+  slack:
+    rooms:
+      - lcmap:UTqlh9PfPVomfpli10WKyZoh#cicd
