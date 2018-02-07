@@ -1,0 +1,8 @@
+language: c
+
+script: make build && make tag
+
+deploy:
+  - provider: script
+    script: make push
+  
