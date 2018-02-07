@@ -42,7 +42,7 @@ Once the new application is ready to run on the SEE, the derivative Docker image
 
 Keep in mind that Dockerhub is a public resource and all images published there are public by default.
 
-Do not include any sensitive information in your image such as usernames, passwords, URLs, machine names, IP addresses or SSH keys as doing so is a security violation and will induce gnashing of teeth.
+Do not include any sensitive information in your image such as usernames, passwords, URLs, machine names, IP addresses or SSH keys: This is a security violation.
 
 If your application requires sensitive data it can be supplied at runtime through Docker environment variables using ``-e`` or ``--env``.  An ``--env-file`` may also be used locally.
 

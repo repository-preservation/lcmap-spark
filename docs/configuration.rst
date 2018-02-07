@@ -44,14 +44,14 @@ Docker has extensive networking capablities.
 
 lcmap-spark's use of these capabilities is minimal.
 
-In order to properly overlay a dynamic Spark cluster on top of Mesos, only ``--net host`` should ever be used.
+In order to properly overlay a dynamic Spark cluster on top of Mesos, only ``--net host`` should ever be used (host networking mode).
 
-This eases host system access to Jupyter Notebooks in local or cluster mode as well.
+This configuration also simplifies host system access to Jupyter Notebooks in local or cluster mode.
 
 Notebooks
 ---------
 
-lcmap-spark's Jupyter Notebook server expects it's notebook directory to be at ``/home/lcmap/notebook`` by default.
+lcmap-spark's Jupyter Notebook server expects its notebook directory to be at ``/home/lcmap/notebook`` by default.
 
 Mount a volume from the host filesystem to this location when running the notebook server.
 
@@ -83,7 +83,7 @@ Cluster mode requirements are:
 
 * Ability to run lcmap-spark locally
 * Docker image published to https://hub.docker.com
-* Network access to Mesos Master(s), ideally over a 10 Gigabit or greater link
+* Network access to Mesos Master(s), ideally over a 10 Gigabit/second or faster link
 * Mesos username
 * Mesos role
 * Mesos password
@@ -104,7 +104,7 @@ When run in cluster mode, the lcmap-spark image is automatically downloaded onto
 
 After a Spark cluster is started using Mesos, it behaves as any Spark cluster would if started manually.
 
-The SparkContext maintains it's reservation on resources with the Mesos Master, keeping the cluster alive.
+The SparkContext maintains its reservation on resources with the Mesos Master, keeping the cluster alive.
 
 Once ``.stop()`` is called on the SparkContext, it releases it's resource reservation and the Spark cluster is shut down.      
 
@@ -122,7 +122,7 @@ When running on Mesos, there are two modes that determine where the SparkContext
 
 lcmap-spark uses client mode only: The driver program (SparkContext) will always run on the local client machine.
 
-**This shouldn't be confused with Spark's local and cluster modes, which determine where the Spark Workers run.**
+**This shouldn't be confused with Spark's local and cluster modes, which determine where the Spark Workers execute.**
 
 SSL Based Authentication
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,7 +134,7 @@ They may be obtained from Mesos admins.
 * mesos.key
 * trustedroot.crt
 
-These files should never be published in an image, as this constitutes a security violation.
+These files should never be published in an image as this constitutes a security violation.
 
 Mount them as a volume at runtime instead:
 
