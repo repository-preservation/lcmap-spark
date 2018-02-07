@@ -134,7 +134,7 @@ They may be obtained from Mesos admins.
 * mesos.key
 * trustedroot.crt
 
-These files should never be published in an image, as this constitues a security violation.
+These files should never be published in an image, as this constitutes a security violation.
 
 Mount them as a volume at runtime instead:
 
