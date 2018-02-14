@@ -47,10 +47,10 @@ RUN yum install -y sudo && \
 COPY pom.xml /root
 RUN mkdir -p $HOME/notebook
 
-RUN yum update  -y 
+RUN yum update  -y
+RUN rpm -Uvh http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-3.noarch.rpm
 RUN yum install -y java-1.8.0-openjdk-devel.x86_64 \
-                   http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-3.noarch.rpm \
-                   mesos \ 
+                   mesos\
                    bzip2 \
                    gcc  \
                    maven
