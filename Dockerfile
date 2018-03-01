@@ -32,7 +32,7 @@ ENV HOME=/home/lcmap \
     LIBPROCESS_SSL_ECDH_CURVE=auto
 
 ENV PATH=$SPARK_HOME/bin:${PATH} \
-    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
+    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.6-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
 # Add a user to run as inside the container to prevent accidental foo while mounting volumes.
 # Use "docker run -u `id -u`" at runtime to assign proper UIDs for file permissions.
@@ -55,7 +55,7 @@ RUN yum install -y java-1.8.0-openjdk-devel.x86_64 \
                    gcc  \
                    maven
 RUN yum -y downgrade mesos-1.4.0
-RUN curl https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz -o /opt/spark.tgz
+RUN curl http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -o /opt/spark.tgz
 RUN cd /opt && tar -zxf spark.tgz && rm -f spark.tgz &&  ln -s spark-* spark && cd -
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /root/mc.sh
 RUN bash /root/mc.sh -u -b -p /usr/local
@@ -63,6 +63,7 @@ RUN conda install python=3.6 pip jupyter numpy --yes
 RUN pip install lcmap-merlin==2.0rc2
 RUN mvn -f /root/pom.xml dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
 RUN yum erase -y maven gcc bzip2
+RUN rm -rf $SPARK_HOME/jars/netty-all-4.0.33.Final.jar $SPARK_HOME/jars/netty-3.9.9.Final.jar
 RUN yum clean all
 RUN rm -rf /var/cache/yum /root/.cache /root/.m2 /root/pom.xml /root/mc.sh
 RUN conda clean --all -y
