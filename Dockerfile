@@ -55,7 +55,7 @@ RUN yum install -y java-1.8.0-openjdk-devel.x86_64 \
                    gcc  \
                    maven
 RUN yum -y downgrade mesos-1.4.0
-RUN curl http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz -o /opt/spark.tgz
+RUN curl http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz -o /opt/spark.tgz
 RUN cd /opt && tar -zxf spark.tgz && rm -f spark.tgz &&  ln -s spark-* spark && cd -
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /root/mc.sh
 RUN bash /root/mc.sh -u -b -p /usr/local
