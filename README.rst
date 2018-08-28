@@ -17,7 +17,7 @@ Features
 * Run `Spark <https://spark.apache.org/docs/latest/>`_  locally or on `Mesos <https://mesos.apache.org/>`_
 * Interactive development and analysis via `Jupyter Notebooks <https://jupyter.org/>`_
 * Connect to `Apache Cassandra <https://cassandra.apache.org/>`_ with the `Spark-Cassandra Connector <https://github.com/datastax/spark-cassandra-connector/>`_ and `DataFrames <https://spark.apache.org/docs/latest/sql-programming-guide.html>`_
-* Includes Spark 2.2, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
+* Includes Spark 2.3, JDK 1.8, Python 3.6 and MKL-enabled Numpy 
 
 Example
 -------
