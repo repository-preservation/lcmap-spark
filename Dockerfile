@@ -32,7 +32,7 @@ ENV HOME=/home/lcmap \
     LIBPROCESS_SSL_ECDH_CURVE=auto
 
 ENV PATH=$SPARK_HOME/bin:${PATH} \
-    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.6-src.zip:$SPARK_HOME/python/lib/pyspark.zip
+    PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
 # Add a user to run as inside the container to prevent accidental foo while mounting volumes.
 # Use "docker run -u `id -u`" at runtime to assign proper UIDs for file permissions.
@@ -59,8 +59,9 @@ RUN curl http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.1/spark-2.3.1-bi
 RUN cd /opt && tar -zxf spark.tgz && rm -f spark.tgz &&  ln -s spark-* spark && cd -
 RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /root/mc.sh
 RUN bash /root/mc.sh -u -b -p /usr/local
-RUN conda install python=3.6 pip jupyter numpy --yes
-RUN pip install lcmap-merlin==2.1
+RUN conda install python=3.6 pip jupyter numpy cython py4j=0.10.7 pandas>=0.19.2 --yes
+RUN pip install lcmap-merlin==2.3.0
+RUN pip install xgboost
 RUN mvn -f /root/pom.xml dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
 RUN yum erase -y maven gcc bzip2
 RUN rm -rf $SPARK_HOME/jars/netty-all-4.0.33.Final.jar $SPARK_HOME/jars/netty-3.9.9.Final.jar
